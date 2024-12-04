@@ -1,0 +1,59 @@
+syntax = "proto3";
+package auth_creads;
+import "google/protobuf/empty.proto";
+
+enum AuthCreadsErrors{
+    InvalidLogin = 0;
+    InvalidPassword = 1;
+    InternalError = 2;
+    LoginAlreadyInUse = 3;
+}
+
+message AuthCreadsGrpcModel{
+    string Id = 1;
+    string Login = 2;
+}
+
+message RegisterGrpcRequest{
+    string Login = 1;
+    string Password = 2;
+}
+
+message RegisterGrpcResponse{
+    oneof register_result{
+        AuthCreadsErrors Error = 1;
+        AuthCreadsGrpcModel Creads = 2;
+    }
+}
+
+message UpdatePasswordGrpcRequest{
+    string Login = 1;
+    string NewPassword = 2;
+}
+
+message UpdatePasswordGrpcResponse{
+    oneof update_password_result{
+        AuthCreadsErrors Error = 1;
+        AuthCreadsGrpcModel Creads = 2;
+    }
+}
+
+message VerifyGrpcRequest{
+    string Login = 1;
+    string Password = 2;
+}
+
+message VerifyGrpcResponse{
+    oneof register_result{
+        AuthCreadsErrors Error = 1;
+        AuthCreadsGrpcModel Creads = 2;
+    }
+}
+
+
+service TraderCredentialsGrpcService {
+    rpc Register(RegisterGrpcRequest) returns (RegisterGrpcResponse);
+    rpc UpdatePassword(UpdatePasswordGrpcRequest) returns (UpdatePasswordGrpcResponse);
+    rpc Verify(VerifyGrpcRequest) returns (VerifyGrpcResponse);   
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
