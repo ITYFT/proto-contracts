@@ -44,7 +44,7 @@ message VerifyGrpcRequest{
 }
 
 message VerifyGrpcResponse{
-    oneof register_result{
+    oneof verify_result{
         AuthCreadsErrors Error = 1;
         AuthCreadsGrpcModel Creads = 2;
     }
