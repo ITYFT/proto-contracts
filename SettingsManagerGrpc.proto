@@ -1,5 +1,6 @@
 syntax = "proto3";
 package settings_manager;
+import "google/protobuf/empty.proto";
 
 enum SettingsManagerGrpcErrorCode {
     InstrumentGroupNotFound = 0;
@@ -211,4 +212,5 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceTradingGroup(SettingsManagerTradingGroupGrpcModel) returns (SettingsManagerInsertOrReplaceTradingGroupGrpcResponse);
     rpc InsertOrReplaceInstrument(SettingsManagerInstrumentGrpcModel) returns (SettingsManagerInsertOrReplaceInstrumentGrpcResponse);
     rpc InsertOrReplaceTradingProfile(SettingsManagerTradingProfileGrpcModel) returns (SettingsManagerInsertOrReplaceTradingProfileGrpcResponse);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
