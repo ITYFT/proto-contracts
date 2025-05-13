@@ -18,7 +18,8 @@ message AuthRegisterClientGrpcRequest{
 
 message AuthRegisterClientGrpcResponse{
     optional AuthError Error = 1;
-    optional string RedirectUrl = 2;
+    optional string AuthToken = 2;
+    optional string RedirectUrl = 3;
 }
 
 message AuthUpdatePasswordGrpcRequest{
@@ -32,8 +33,9 @@ message AuthenticateGrpcRequest{
 }
 
 message AuthenticateGrpcResponse{
-    string Login = 1;
-    string Password = 2;
+    optional AuthError Error = 1;
+    optional string AuthToken = 2;
+    optional string RedirectUrl = 3;
 }
 
 message AuthUpdatePasswordGrpcResponse{
