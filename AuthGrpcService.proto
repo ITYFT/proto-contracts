@@ -1,0 +1,50 @@
+
+syntax = "proto3";
+package yft_auth;
+import "google/protobuf/empty.proto";
+
+enum AuthError{
+    LoginAlreadyInUse = 0;
+    AuthCreadsNotFound = 1;
+    InvalidLogin = 2;
+    InvalidPassword = 3;
+}
+
+message AuthRegisterClientGrpcRequest{
+    string Login = 1;
+    string Password = 2;
+    optional string Creads = 3;
+}
+
+message AuthRegisterClientGrpcResponse{
+    optional AuthError Error = 1;
+    optional string RedirectUrl = 2;
+}
+
+message AuthUpdatePasswordGrpcRequest{
+    string ClientId = 1;
+    string NewPassword = 2;
+}
+
+message AuthenticateGrpcRequest{
+    string Login = 1;
+    string Password = 2;
+}
+
+message AuthenticateGrpcResponse{
+    string Login = 1;
+    string Password = 2;
+}
+
+message AuthUpdatePasswordGrpcResponse{
+    optional AuthError Error = 1;
+    optional string AuthToken = 2;
+    optional string RedirectUrl = 3;
+}
+
+service YftAuthService {
+    rpc Register(AuthRegisterClientGrpcRequest) returns (AuthRegisterClientGrpcResponse);
+    rpc UpdatePassword(AuthUpdatePasswordGrpcRequest) returns (AuthUpdatePasswordGrpcResponse);
+    rpc Authenticate(AuthenticateGrpcRequest) returns (AuthUpdatePasswordGrpcResponse);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
