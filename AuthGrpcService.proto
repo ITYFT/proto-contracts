@@ -45,6 +45,6 @@ message AuthUpdatePasswordGrpcResponse{
 service YftAuthService {
     rpc Register(AuthRegisterClientGrpcRequest) returns (AuthRegisterClientGrpcResponse);
     rpc UpdatePassword(AuthUpdatePasswordGrpcRequest) returns (AuthUpdatePasswordGrpcResponse);
-    rpc Authenticate(AuthenticateGrpcRequest) returns (AuthUpdatePasswordGrpcResponse);
+    rpc Authenticate(AuthenticateGrpcRequest) returns (AuthenticateGrpcResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
