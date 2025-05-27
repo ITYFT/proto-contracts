@@ -19,6 +19,7 @@ message AuthRegisterClientGrpcResponse{
     optional AuthError Error = 1;
     optional string AuthToken = 2;
     optional string RedirectUrl = 3;
+    optional string ClientId = 4;
 }
 
 message AuthUpdatePasswordGrpcRequest{
@@ -35,12 +36,14 @@ message AuthenticateGrpcResponse{
     optional AuthError Error = 1;
     optional string AuthToken = 2;
     optional string RedirectUrl = 3;
+    optional string ClientId = 4;
 }
 
 message AuthUpdatePasswordGrpcResponse{
     optional AuthError Error = 1;
     optional string AuthToken = 2;
     optional string RedirectUrl = 3;
+    optional string ClientId = 4;
 }
 
 service YftAuthService {
