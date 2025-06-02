@@ -200,7 +200,105 @@ message SettingsManagerInsertOrReplaceTradingProfileGrpcResponse {
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
+message SettingsManagerBrandImageGrpcModel {
+    string Image = 1;
+    string Mime = 2;
+    string ImageType = 3;
+}
 
+message SettingsManagerInsertOrReplaceBrandImageGrpcResponse {
+    optional SettingsManagerBrandImageGrpcModel BrandImage = 1;
+    repeated SettingsManagerGrpcError Errors = 2;
+}
+
+message SettingsManagerFunctionalSettingsGrpcModel {
+    bool Calendar = 1;
+    bool News = 2;
+    bool LiveChat = 3;
+    optional string Deposit = 4;
+    optional string Withdrawal = 5;
+    bool Transfer = 6;
+    bool Dashboard = 7;
+    bool AccountCreation = 8;
+    bool ShowNotifications = 9;
+    bool ShowDeposit = 10;
+    bool ShowLanguage = 11;
+    optional string LanguageList = 12;
+    bool ShowCompanyLogo = 13;
+    bool ShowHeatMap = 14;
+    bool ShowHowTo = 15;
+    bool ShowWithdraw = 16;
+    bool ShowSecurity = 17;
+    bool ShowVerification = 18;
+    bool ShowProfile = 19;
+    optional string BrandName = 20;
+    optional string BrandCopyrights = 21;
+    bool ShowLeaderboard = 22;
+    bool ShowPoweredBy = 23;
+    bool ShowAiAssistant = 24;
+    bool ShowDiscordCommunity = 25;
+    bool ShowPoweredBySidebar = 26;
+}
+
+
+message SettingsManagerInsertOrReplaceFunctionalSettingsGrpcResponse {
+    optional SettingsManagerFunctionalSettingsGrpcModel FunctionalSettings = 1;
+    repeated SettingsManagerGrpcError Errors = 2;
+}
+
+message SettingsManagerTerminalSettingsGrpcModel {
+    bool ShowRegisterPage = 1;
+    bool ShowLoginPage = 2;
+    optional string ProfileLink = 3;
+    optional string KycVerification = 4;
+    optional string Security = 5;
+    optional string LogoutRedirectUrl = 6;
+    optional string SighUpUrl = 7;
+    optional string About = 8;
+    optional string Support = 9;
+    optional string Terms = 10;
+    optional string Policy = 11;
+    optional string LoginLogoWidth = 12;
+    optional string LoginLogoHeight = 13;
+    optional string TerminalLogoWidth = 14;
+    optional string TerminalLogoHeight = 15;
+    optional string DiscordCommunityUrl = 16;
+    optional string DiscordCommunityLinkText = 17;
+    optional string PoweredByLogoWidth = 18;
+    optional string PoweredByLogoHeight = 19;
+    optional string PoweredByLogoLink = 20;
+    optional string PoweredByLogoTooltip = 21;
+}
+
+message SettingsManagerTerminalSettingsGrpcModelResponse {
+    optional SettingsManagerTerminalSettingsGrpcModel TerminalSettings = 1;
+    repeated SettingsManagerGrpcError Errors = 2;
+}
+
+message SettingsManagerLocalizationGrpcModel {
+    string Language = 1;
+    map<string, string> Translations = 2;
+    bool Disabled = 3;
+}
+
+message SettingsManagerLocalizationGrpcModelResponse {
+    optional SettingsManagerLocalizationGrpcModel Localization = 1;
+    repeated SettingsManagerGrpcError Errors = 2;
+}
+
+message SettingsManagerKeyValueGrpcModel {
+    string Key = 1;
+    string Value = 2;
+}
+
+message SettingsManagerKeyValuesGrpcModel {
+    repeated SettingsManagerKeyValueGrpcModel KeyValues = 1;
+}
+
+message SettingsManagerKeyValuesGrpcModelResponse {
+    repeated SettingsManagerKeyValueGrpcModel KeyValues = 1;
+    repeated SettingsManagerGrpcError Errors = 2;
+}
 
 service SettingsManagerGrpcService{
     rpc InsertOrReplaceCollateral(SettingsManagerCollateralGrpcModel) returns (SettingsManagerInsertOrReplaceCollateralGrpcResponse);
@@ -212,5 +310,10 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceTradingGroup(SettingsManagerTradingGroupGrpcModel) returns (SettingsManagerInsertOrReplaceTradingGroupGrpcResponse);
     rpc InsertOrReplaceInstrument(SettingsManagerInstrumentGrpcModel) returns (SettingsManagerInsertOrReplaceInstrumentGrpcResponse);
     rpc InsertOrReplaceTradingProfile(SettingsManagerTradingProfileGrpcModel) returns (SettingsManagerInsertOrReplaceTradingProfileGrpcResponse);
+    rpc InsertOrReplaceLocalization(SettingsManagerLocalizationGrpcModel) returns (SettingsManagerLocalizationGrpcModelResponse);
+    rpc InsertOrReplaceKeyValues(SettingsManagerKeyValuesGrpcModel) returns (SettingsManagerKeyValuesGrpcModelResponse);
+    rpc InsertOrReplaceBrandImage(SettingsManagerBrandImageGrpcModel) returns (SettingsManagerInsertOrReplaceBrandImageGrpcResponse);
+    rpc InsertOrReplaceBrandFunctionalSettings(SettingsManagerFunctionalSettingsGrpcModel) returns (SettingsManagerInsertOrReplaceFunctionalSettingsGrpcResponse);
+    rpc InsertOrReplaceBrandTerminalSettings(SettingsManagerTerminalSettingsGrpcModel) returns (SettingsManagerTerminalSettingsGrpcModelResponse)
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
