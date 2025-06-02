@@ -292,7 +292,8 @@ message SettingsManagerKeyValueGrpcModel {
 }
 
 message SettingsManagerKeyValuesGrpcModel {
-    repeated SettingsManagerKeyValueGrpcModel KeyValues = 1;
+    string ClientId = 1;
+    repeated SettingsManagerKeyValueGrpcModel KeyValues = 2;
 }
 
 message SettingsManagerKeyValuesGrpcModelResponse {
