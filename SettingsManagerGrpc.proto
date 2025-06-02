@@ -314,6 +314,6 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceKeyValues(SettingsManagerKeyValuesGrpcModel) returns (SettingsManagerKeyValuesGrpcModelResponse);
     rpc InsertOrReplaceBrandImage(SettingsManagerBrandImageGrpcModel) returns (SettingsManagerInsertOrReplaceBrandImageGrpcResponse);
     rpc InsertOrReplaceBrandFunctionalSettings(SettingsManagerFunctionalSettingsGrpcModel) returns (SettingsManagerInsertOrReplaceFunctionalSettingsGrpcResponse);
-    rpc InsertOrReplaceBrandTerminalSettings(SettingsManagerTerminalSettingsGrpcModel) returns (SettingsManagerTerminalSettingsGrpcModelResponse)
+    rpc InsertOrReplaceBrandTerminalSettings(SettingsManagerTerminalSettingsGrpcModel) returns (SettingsManagerTerminalSettingsGrpcModelResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
