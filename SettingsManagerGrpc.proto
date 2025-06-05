@@ -270,6 +270,45 @@ message SettingsManagerTerminalSettingsGrpcModel {
     optional string PoweredByLogoTooltip = 21;
 }
 
+message SettingsManagerMdeProfileGrpcModel {
+  string Id = 1;
+  string Name = 2;
+  repeated SettingsManagerMdeLiquidityProfileGrpcModel Instruments = 3;
+}
+
+message SettingsManagerMdeLiquidityProfileGrpcModel {
+  string Id = 1;
+  optional string ProfileId = 2; 
+}
+
+message SettingsManagerMdeProfileGrpcModelResponse {
+    optional SettingsManagerMdeProfileGrpcModel MdeProfile = 1;
+    repeated SettingsManagerGrpcError Errors = 2;
+}
+
+message SettingsManagerMdeLiquidityGrpcModel {
+  string Id = 1;
+  string Name = 2;
+  repeated SettingsManagerMdeLiquidityLevelGrpcModel Levels = 3;
+}
+
+message SettingsManagerMdeLiquidityLevelGrpcModel {
+  double Volume = 1;
+  double VolumeDeviation = 2;
+  double Markup = 3;
+  double MarkupDeviation = 4;
+}
+
+message SettingsManagerMdeProfileLiquidityGrpcModelResponse {
+    optional SettingsManagerMdeLiquidityGrpcModel MdeLiquidity = 1;
+    repeated SettingsManagerGrpcError Errors = 2;
+}
+
+message SettingsManagerKeyValuesGrpcModelResponse {
+    repeated SettingsManagerKeyValueGrpcModel KeyValues = 1;
+    repeated SettingsManagerGrpcError Errors = 2;
+}
+
 message SettingsManagerTerminalSettingsGrpcModelResponse {
     optional SettingsManagerTerminalSettingsGrpcModel TerminalSettings = 1;
     repeated SettingsManagerGrpcError Errors = 2;
@@ -316,5 +355,7 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceBrandImage(SettingsManagerBrandImageGrpcModel) returns (SettingsManagerInsertOrReplaceBrandImageGrpcResponse);
     rpc InsertOrReplaceBrandFunctionalSettings(SettingsManagerFunctionalSettingsGrpcModel) returns (SettingsManagerInsertOrReplaceFunctionalSettingsGrpcResponse);
     rpc InsertOrReplaceBrandTerminalSettings(SettingsManagerTerminalSettingsGrpcModel) returns (SettingsManagerTerminalSettingsGrpcModelResponse);
+    rpc InsertOrReplaceMdeProfile(SettingsManagerMdeProfileGrpcModel) returns (SettingsManagerMdeProfileGrpcModelResponse);
+    rpc InsertOrReplaceMdeLiquidityProfile(SettingsManagerMdeLiquidityGrpcModel) returns (SettingsManagerMdeProfileLiquidityGrpcModelResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
