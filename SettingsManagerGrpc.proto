@@ -337,11 +337,11 @@ message SettingsManagerKeyValuesGrpcModelResponse {
 }
 
 message SettingsManagerDefaultTradingGroup {
-    string Group = 1;
+    string DefaultGroup = 1;
 }
 
 message SettingsManagerDefaultTradingGroupGrpcModelResponse {
-    optional SettingsManagerMdeLiquidityGrpcModel MdeLiquidity = 1;
+    optional SettingsManagerMdeLiquidityGrpcModel DefaultGroup = 1;
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
