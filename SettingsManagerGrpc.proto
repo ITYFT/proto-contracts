@@ -183,7 +183,7 @@ message SettingsManagerTradingProfileInstrumentGrpcModel {
 
 message SettingsManagerTradingProfileGrpcModel {
     string Id = 1;
-    double StopOutPercent = 2;
+    optional double StopOutPercent = 2;
     bool IsABook = 3;
     optional double MarginCallPercent = 4;
     repeated SettingsManagerTradingProfileInstrumentGrpcModel Instruments = 5;
