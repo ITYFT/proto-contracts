@@ -176,7 +176,6 @@ message SettingsManagerTradingProfileInstrumentGrpcModel {
     double MaxPositionVolume = 4;
     uint32 OpenPositionMinDelayMs = 5;
     uint32 OpenPositionMaxDelayMs = 6;
-    optional double StopOutPercent = 7;
     optional double InstrumentMaxLeverage = 8;
     optional double CommissionPerLot = 9;
 }
