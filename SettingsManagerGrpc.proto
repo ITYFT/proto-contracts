@@ -340,8 +340,17 @@ message SettingsManagerDefaultMarkupProfile {
     string DefaultProfile = 1;
 }
 
+message SettingsManagerDefaultTradingGroupProfile {
+    string DefaulTradingGroup = 1;
+}
+
 message SettingsManagerDefaultMarkupProfileGrpcModelResponse {
     optional SettingsManagerDefaultMarkupProfile DefaultProfile = 1;
+    repeated SettingsManagerGrpcError Errors = 2;
+}
+
+message SettingsManagerDefaultTradingGroupGrpcModelResponse {
+    optional SettingsManagerDefaultMarkupProfile DefaulTradingGroup = 1;
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
@@ -363,5 +372,6 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceMdeProfile(SettingsManagerMdeProfileGrpcModel) returns (SettingsManagerMdeProfileGrpcModelResponse);
     rpc InsertOrReplaceMdeLiquidityProfile(SettingsManagerMdeLiquidityGrpcModel) returns (SettingsManagerMdeProfileLiquidityGrpcModelResponse);
     rpc InsertOrReplaceDefaultMarkupProfile(SettingsManagerDefaultMarkupProfile) returns (SettingsManagerDefaultMarkupProfileGrpcModelResponse);
+    rpc InsertOrReplaceDefaultTradingGroup(SettingsManagerDefaultTradingGroupProfile) returns (SettingsManagerDefaultTradingGroupGrpcModelResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
