@@ -336,12 +336,12 @@ message SettingsManagerKeyValuesGrpcModelResponse {
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
-message SettingsManagerDefaultTradingGroup {
-    string DefaultGroup = 1;
+message SettingsManagerDefaultMarkupProfile {
+    string DefaultProfile = 1;
 }
 
-message SettingsManagerDefaultTradingGroupGrpcModelResponse {
-    optional SettingsManagerMdeLiquidityGrpcModel DefaultGroup = 1;
+message SettingsManagerDefaultMarkupProfileGrpcModelResponse {
+    optional SettingsManagerDefaultMarkupProfile DefaultProfile = 1;
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
@@ -362,6 +362,6 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceBrandTerminalSettings(SettingsManagerTerminalSettingsGrpcModel) returns (SettingsManagerTerminalSettingsGrpcModelResponse);
     rpc InsertOrReplaceMdeProfile(SettingsManagerMdeProfileGrpcModel) returns (SettingsManagerMdeProfileGrpcModelResponse);
     rpc InsertOrReplaceMdeLiquidityProfile(SettingsManagerMdeLiquidityGrpcModel) returns (SettingsManagerMdeProfileLiquidityGrpcModelResponse);
-    rpc InsertOrReplaceDefaultTradingGroup(SettingsManagerDefaultTradingGroup) returns (SettingsManagerDefaultTradingGroupGrpcModelResponse);
+    rpc InsertOrReplaceDefaultMarkupProfile(SettingsManagerDefaultMarkupProfile) returns (SettingsManagerDefaultMarkupProfileGrpcModelResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
