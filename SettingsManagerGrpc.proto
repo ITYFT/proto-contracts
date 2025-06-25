@@ -350,7 +350,7 @@ message SettingsManagerDefaultMarkupProfileGrpcModelResponse {
 }
 
 message SettingsManagerDefaultTradingGroupGrpcModelResponse {
-    optional SettingsManagerDefaultMarkupProfile DefaultTradingGroup = 1;
+    optional SettingsManagerDefaultTradingGroup DefaultTradingGroup = 1;
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
