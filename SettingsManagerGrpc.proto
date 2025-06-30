@@ -14,6 +14,7 @@ enum SettingsManagerGrpcErrorCode {
     InstrumentDayOffProfileNotFound = 8;
     CollateralsErrors = 9;
     FieldsValidationError = 10;
+    MdeLiquidityErrors = 11;
 }
 
 
