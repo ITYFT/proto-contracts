@@ -15,6 +15,7 @@ enum SettingsManagerGrpcErrorCode {
     CollateralsErrors = 9;
     FieldsValidationError = 10;
     MdeLiquidityErrors = 11;
+    MarkupProfileErrors = 12;
 }
 
 
