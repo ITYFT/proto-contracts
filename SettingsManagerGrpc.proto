@@ -325,6 +325,7 @@ message SettingsManagerLocalizationGrpcModelResponse {
 message SettingsManagerKeyValueGrpcModel {
     string Key = 1;
     string Value = 2;
+    optional string Description = 3;
 }
 
 message SettingsManagerKeyValuesGrpcModel {
