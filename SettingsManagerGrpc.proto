@@ -16,6 +16,7 @@ enum SettingsManagerGrpcErrorCode {
     FieldsValidationError = 10;
     MdeLiquidityErrors = 11;
     MarkupProfileErrors = 12;
+    LocalizationErrors = 13;
 }
 
 
