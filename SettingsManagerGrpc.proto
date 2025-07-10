@@ -322,6 +322,10 @@ message SettingsManagerDeleteLocalizationGrpcModel {
     string Language = 1;
 }
 
+message SettingsManagerInsertOrReplaceLocalizationGrpcModel {
+    string Language = 1;
+}
+
 message SettingsManagerLocalizationDisableGrpcModel {
     string Language = 1;
     bool Disabled = 2;
@@ -375,6 +379,8 @@ message SettingsManagerDefaultTradingGroupGrpcModelResponse {
     optional SettingsManagerDefaultTradingGroup DefaultTradingGroup = 1;
     repeated SettingsManagerGrpcError Errors = 2;
 }
+
+
 
 service SettingsManagerGrpcService{
     rpc InsertOrReplaceCollateral(SettingsManagerCollateralGrpcModel) returns (SettingsManagerInsertOrReplaceCollateralGrpcResponse);
