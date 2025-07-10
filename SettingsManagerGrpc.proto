@@ -387,7 +387,7 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceInstrument(SettingsManagerInstrumentGrpcModel) returns (SettingsManagerInsertOrReplaceInstrumentGrpcResponse);
     rpc InsertOrReplaceTradingProfile(SettingsManagerTradingProfileGrpcModel) returns (SettingsManagerInsertOrReplaceTradingProfileGrpcResponse);
     rpc InsertOrReplaceLocalization(SettingsManagerInsertOrReplaceLocalizationGrpcModel) returns (SettingsManagerLocalizationGrpcModelResponse);
-    rpc DeleteLocalization(SettingsManagerInsertOrReplaceLocalizationGrpcModel) returns (SettingsManagerInsertOrReplaceLocalizationGrpcModel);
+    rpc DeleteLocalization(SettingsManagerInsertOrReplaceLocalizationGrpcModel) returns (SettingsManagerLocalizationGrpcModelResponse);
     rpc DisableLocalization(SettingsManagerLocalizationDisableGrpcModel) returns (SettingsManagerLocalizationGrpcModelResponse);
     rpc DeleteLocalizationRow(SettingsManagerLocalizationDeleteRowGrpcModel) returns (SettingsManagerLocalizationGrpcModelResponse);
     rpc InsertOrReplaceLocalizationRows(SettingsManagerLocalizationRowsGrpcModel) returns (SettingsManagerLocalizationGrpcModelResponse);
