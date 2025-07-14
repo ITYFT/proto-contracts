@@ -213,7 +213,7 @@ message SettingsManagerInsertOrReplaceBrandImageGrpcResponse {
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
-message SettingsManagerFunctionalSettingsGrpcModel {
+message SettingsManagerTerminalSettingsGrpcModel {
     bool Calendar = 1;
     bool News = 2;
     bool LiveChat = 3;
@@ -249,7 +249,8 @@ message SettingsManagerInsertOrReplaceFunctionalSettingsGrpcResponse {
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
-message SettingsManagerTerminalSettingsGrpcModel {
+
+message SettingsManagerFunctionalSettingsGrpcModel {
     bool ShowRegisterPage = 1;
     bool ShowLoginPage = 2;
     optional string ProfileLink = 3;
