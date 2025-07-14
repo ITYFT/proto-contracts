@@ -240,6 +240,7 @@ message SettingsManagerFunctionalSettingsGrpcModel {
     bool ShowAiAssistant = 24;
     bool ShowDiscordCommunity = 25;
     bool ShowPoweredBySidebar = 26;
+    bool EnableEmailVerification = 27;
 }
 
 
@@ -270,6 +271,12 @@ message SettingsManagerTerminalSettingsGrpcModel {
     optional string PoweredByLogoHeight = 19;
     optional string PoweredByLogoLink = 20;
     optional string PoweredByLogoTooltip = 21;
+    bool EnableSentry = 22;
+    optional string SentryToken = 23;
+    bool EnableGtm = 24;
+    optional string GtmId = 25;
+    bool EnableLiveChat = 26;
+    optional string LiveChatScript = 27;
 }
 
 message SettingsManagerMdeProfileGrpcModel {
