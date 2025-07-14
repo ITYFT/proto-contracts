@@ -352,6 +352,16 @@ message SettingsManagerKeyValueGrpcModel {
     optional string Description = 3;
 }
 
+message SettingsManagerAuthRulesGrpcModel {
+    string LoginRegex = 1;
+    string PasswordRegex = 2;
+}
+
+message SettingsManagerAuthRulesGrpcModelResponse {
+    optional SettingsManagerAuthRulesGrpcModel AuthRules = 1;
+    repeated SettingsManagerGrpcError Errors = 2;
+}
+
 message SettingsManagerKeyValuesGrpcModel {
     string ClientId = 1;
     repeated SettingsManagerKeyValueGrpcModel KeyValues = 2;
@@ -402,6 +412,7 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceBrandFunctionalSettings(SettingsManagerFunctionalSettingsGrpcModel) returns (SettingsManagerInsertOrReplaceFunctionalSettingsGrpcResponse);
     rpc InsertOrReplaceBrandTerminalSettings(SettingsManagerTerminalSettingsGrpcModel) returns (SettingsManagerTerminalSettingsGrpcModelResponse);
     rpc InsertOrReplaceMdeProfile(SettingsManagerMdeProfileGrpcModel) returns (SettingsManagerMdeProfileGrpcModelResponse);
+    rpc InsertOrReplaceAuthRules(SettingsManagerAuthRulesGrpcModel) returns (SettingsManagerAuthRulesGrpcModelResponse);
     rpc InsertOrReplaceMdeLiquidityProfile(SettingsManagerMdeLiquidityGrpcModel) returns (SettingsManagerMdeProfileLiquidityGrpcModelResponse);
     rpc InsertOrReplaceDefaultMarkupProfile(SettingsManagerDefaultMarkupProfile) returns (SettingsManagerDefaultMarkupProfileGrpcModelResponse);
     rpc InsertOrReplaceDefaultTradingGroup(SettingsManagerDefaultTradingGroup) returns (SettingsManagerDefaultTradingGroupGrpcModelResponse);
