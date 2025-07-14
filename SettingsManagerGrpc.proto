@@ -355,6 +355,7 @@ message SettingsManagerKeyValueGrpcModel {
 message SettingsManagerAuthRulesGrpcModel {
     string LoginRegex = 1;
     string PasswordRegex = 2;
+    string BrandName = 3;
 }
 
 message SettingsManagerAuthRulesGrpcModelResponse {
