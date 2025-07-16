@@ -11,6 +11,12 @@ enum CandlesWriterGrpcResponseCode {
   InvalidCandles = 4;
 }
 
+enum CandlesWriterCandleType {
+  Minute = 0;
+  Hour = 1;
+  Day = 2;
+}
+
 message CandlesWriterGrpcResponse {
   CandlesWriterGrpcResponseCode ResponseCode = 1;
   optional string Message = 2;
@@ -36,6 +42,21 @@ message UploadCandleStreamEnvelope {
   }
 }
 
+message GetCandlesGrpcRequest {
+  string AuthToken = 1;
+  string Instrument = 2;
+  CandleType Type = 3;
+  int64 FromDate = 4;
+  int64 ToDate = 5;
+  optional string AccountId = 6;
+}
+
+message GetCandlesGrpcResponse {
+  repeated CandleGrpcModel Candles = 1;
+}
+
 service CandlesWriterGrpcService {
   rpc UploadCandles(stream UploadCandleStreamEnvelope) returns (CandlesWriterGrpcResponse);
+  rpc GetCandles(GetCandlesGrpcRequest) returns (stream GetCandlesGrpcResponse); 
+  rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
