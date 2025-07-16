@@ -1,5 +1,5 @@
 syntax = "proto3";
-package settings_manager;
+package candles_writer;
 
 import "google/protobuf/empty.proto";
 
