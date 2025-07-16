@@ -45,7 +45,7 @@ message UploadCandleStreamEnvelope {
 message GetCandlesGrpcRequest {
   string AuthToken = 1;
   string Instrument = 2;
-  CandleType Type = 3;
+  CandlesWriterCandleType Type = 3;
   int64 FromDate = 4;
   int64 ToDate = 5;
   optional string AccountId = 6;
