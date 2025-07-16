@@ -1,0 +1,41 @@
+syntax = "proto3";
+package settings_manager;
+
+import "google/protobuf/empty.proto";
+
+enum CandlesWriterGrpcResponseCode {
+  Success = 0;
+  SuccessUpload = 1;
+  AuthFailed = 2;
+  InvalidUploadKey = 3;
+  InvalidCandles = 4;
+}
+
+message CandlesWriterGrpcResponse {
+  CandlesWriterGrpcResponseCode ResponseCode = 1;
+  optional string Message = 2;
+}
+
+message CandleGrpcModel {
+  int64 Date = 1;
+  double Open = 2;
+  double Close = 3;
+  double High = 4;
+  double Low = 5;
+}
+
+message UploadMetadata {
+  string AuthSecret = 1;
+  string Instrument = 2;
+}
+
+message UploadCandleStreamEnvelope {
+  oneof payload {
+    UploadMetadata Metadata = 1;
+    CandleGrpcModel Candle = 2;
+  }
+}
+
+service CandlesWriterGrpcService {
+  rpc UploadCandles(stream UploadCandleStreamEnvelope) returns (CandlesWriterGrpcResponse);
+}
