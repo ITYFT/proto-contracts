@@ -278,6 +278,11 @@ message SettingsManagerFunctionalSettingsGrpcModel {
     optional string GtmId = 25;
     bool EnableLiveChat = 26;
     optional string LiveChatScript = 27;
+    optional string TheAllNew = 28;
+    optional string CrossMargin = 29;
+    optional string TradingPlatform = 30;
+    optional string LoginPageHeadline = 31;
+    optional string LoginPageHeadlineColor = 32;
 }
 
 message SettingsManagerMdeProfileGrpcModel {
