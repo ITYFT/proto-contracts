@@ -283,6 +283,7 @@ message SettingsManagerFunctionalSettingsGrpcModel {
     optional string TradingPlatform = 30;
     optional string LoginPageHeadline = 31;
     optional string LoginPageHeadlineColor = 32;
+    optional string SentryProject = 33;
 }
 
 message SettingsManagerMdeProfileGrpcModel {
