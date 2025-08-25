@@ -1,0 +1,49 @@
+
+syntax = "proto3";
+package admin_auth;
+import "google/protobuf/empty.proto";
+
+enum AuthError{
+    LoginAlreadyInUse = 0;
+    UserNotFound = 1;
+    InvalidLogin = 2;
+    InvalidPassword = 3;
+}
+
+
+message AdminAuthRegisterUserGrpcRequest{
+    string Login = 1;
+    string Password = 2;
+}
+
+message AdminAuthRegisterUserGrpcResponse{
+    optional AuthError Error = 1;
+    optional string AuthToken = 2;
+}
+
+message AdminAuthUpdatePasswordGrpcRequest{
+    string Login = 1;
+    string NewPassword = 2;
+}
+
+message AdminAuthUpdatePasswordGrpcResponse{
+    optional AuthError Error = 1;
+    optional string AuthToken = 2;
+}
+
+message AdminAuthenticateGrpcRequest{
+    string Login = 1;
+    string Password = 2;
+}
+
+message AdminAuthenticateGrpcResponse{
+    optional AuthError Error = 1;
+    optional string AuthToken = 2;
+}
+
+service AdminAuthService {
+    rpc Register(AdminAuthRegisterUserGrpcRequest) returns (AdminAuthRegisterUserGrpcResponse);
+    rpc UpdatePassword(AdminAuthUpdatePasswordGrpcRequest) returns (AdminAuthUpdatePasswordGrpcResponse);
+    rpc Authenticate(AdminAuthenticateGrpcRequest) returns (AdminAuthenticateGrpcResponse);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
