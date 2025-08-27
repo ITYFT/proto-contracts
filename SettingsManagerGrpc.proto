@@ -17,6 +17,7 @@ enum SettingsManagerGrpcErrorCode {
     MdeLiquidityErrors = 11;
     MarkupProfileErrors = 12;
     LocalizationErrors = 13;
+    ImageErrors = 14;
 }
 
 
