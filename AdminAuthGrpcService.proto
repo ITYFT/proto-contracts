@@ -8,6 +8,8 @@ enum AuthError{
     UserNotFound = 1;
     InvalidLogin = 2;
     InvalidPassword = 3;
+    InvalidToken = 4;
+    StaleToken = 5;
 }
 
 
@@ -19,6 +21,7 @@ message AdminAuthRegisterUserGrpcRequest{
 message AdminAuthRegisterUserGrpcResponse{
     optional AuthError Error = 1;
     optional string AuthToken = 2;
+    optional string RefreshToken = 3;
 }
 
 message AdminAuthUpdatePasswordGrpcRequest{
@@ -29,6 +32,7 @@ message AdminAuthUpdatePasswordGrpcRequest{
 message AdminAuthUpdatePasswordGrpcResponse{
     optional AuthError Error = 1;
     optional string AuthToken = 2;
+    optional string RefreshToken = 3;
 }
 
 message AdminAuthenticateGrpcRequest{
@@ -39,11 +43,33 @@ message AdminAuthenticateGrpcRequest{
 message AdminAuthenticateGrpcResponse{
     optional AuthError Error = 1;
     optional string AuthToken = 2;
+    optional string RefreshToken = 3;
 }
+
+message AdminAuthRefreshGrpcRequest{
+    string RefreshToken = 1;
+}
+
+message AdminAuthRefreshGrpcResponse{
+    optional AuthError Error = 1;
+    optional string AuthToken = 2;
+    optional string RefreshToken = 3;
+}
+
+message AdminAuthValidateJwtRequest{
+    string AuthToken = 1;
+}
+
+message AdminAuthValidateJwtResponse{
+    optional AuthError Error = 1;
+}
+
 
 service AdminAuthService {
     rpc Register(AdminAuthRegisterUserGrpcRequest) returns (AdminAuthRegisterUserGrpcResponse);
+    rpc Refresh(AdminAuthRefreshGrpcRequest) returns (AdminAuthRefreshGrpcResponse);
     rpc UpdatePassword(AdminAuthUpdatePasswordGrpcRequest) returns (AdminAuthUpdatePasswordGrpcResponse);
     rpc Authenticate(AdminAuthenticateGrpcRequest) returns (AdminAuthenticateGrpcResponse);
+    rpc Validate(AdminAuthValidateJwtRequest) returns (AdminAuthValidateJwtResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
