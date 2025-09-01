@@ -64,12 +64,42 @@ message AdminAuthValidateJwtResponse{
     optional AuthError Error = 1;
 }
 
+message AdminAuthCreateGroupGrpcRequest{
+    string Name = 1;
+    string Description = 2;
+}
+
+message AdminAuthCreateGroupGrpcResponse{
+    optional string GroupId = 1;
+}
+
+message AdminAuthCreatePermissionGrpcRequest{
+    string Name = 1;
+    string Description = 2;
+}
+
+message AdminAuthCreatePermissionGrpcResponse{
+    optional string PermissionId = 1;
+}
+
+message AdminAuthCreateScopeGrpcRequest{
+    string Name = 1;
+    string Description = 2;
+}
+
+message AdminAuthCreateScopeGrpcResponse{
+    optional string ScopeId = 1;
+}
+
 
 service AdminAuthService {
     rpc Register(AdminAuthRegisterUserGrpcRequest) returns (AdminAuthRegisterUserGrpcResponse);
     rpc Refresh(AdminAuthRefreshGrpcRequest) returns (AdminAuthRefreshGrpcResponse);
     rpc UpdatePassword(AdminAuthUpdatePasswordGrpcRequest) returns (AdminAuthUpdatePasswordGrpcResponse);
     rpc Authenticate(AdminAuthenticateGrpcRequest) returns (AdminAuthenticateGrpcResponse);
+    rpc CreateGroup(AdminAuthCreateGroupGrpcRequest) returns (AdminAuthCreateGroupGrpcResponse);
+    rpc CreatePermission(AdminAuthCreatePermissionGrpcRequest) returns (AdminAuthCreatePermissionGrpcResponse);
+    rpc CreateScope(AdminAuthCreateScopeGrpcRequest) returns (AdminAuthCreateScopeGrpcResponse);
     rpc Validate(AdminAuthValidateJwtRequest) returns (AdminAuthValidateJwtResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
