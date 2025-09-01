@@ -406,14 +406,30 @@ message SettingsManagerDefaultTradingGroupGrpcModelResponse {
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
+message SettingsManagerInsertOrReplaceAssetImagesGrpcRequest {
+  repeated SettingsManagerAssetImageGrpcModel Items = 1;
+}
+
+message SettingsManagerGetAssetImagesGrpcRequest {
+  repeated string AssetIds = 1;
+}
+
+message SettingsManagerAssetImageResult {
+  SettingsManagerAssetImageGrpcModel Item = 1;
+  repeated SettingsManagerGrpcError Errors = 2;
+}
+
 message SettingsManagerAssetImageGrpcModel {
     string Image = 1;
     string AssetId = 2; 
 }
 
-message SettingsManagerInsertOrReplaceAssetImageGrpcResponse {
-    optional SettingsManagerAssetImageGrpcModel AssetImage = 1;
-    repeated SettingsManagerGrpcError Errors = 2;
+message SettingsManagerInsertOrReplaceAssetImagesGrpcResponse {
+  repeated SettingsManagerAssetImageResult Results = 1;
+}
+
+message SettingsManagerGetAssetImagesGrpcResponse {
+  repeated SettingsManagerAssetImageResult Results = 1;
 }
 
 service SettingsManagerGrpcService{
@@ -440,6 +456,7 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceMdeLiquidityProfile(SettingsManagerMdeLiquidityGrpcModel) returns (SettingsManagerMdeProfileLiquidityGrpcModelResponse);
     rpc InsertOrReplaceDefaultMarkupProfile(SettingsManagerDefaultMarkupProfile) returns (SettingsManagerDefaultMarkupProfileGrpcModelResponse);
     rpc InsertOrReplaceDefaultTradingGroup(SettingsManagerDefaultTradingGroup) returns (SettingsManagerDefaultTradingGroupGrpcModelResponse);
-    rpc InsertOrReplaceAssetImage(SettingsManagerAssetImageGrpcModel) returns (SettingsManagerInsertOrReplaceAssetImageGrpcResponse);
+    rpc InsertOrReplaceAssetImages(SettingsManagerInsertOrReplaceAssetImagesGrpcRequest) returns (SettingsManagerInsertOrReplaceAssetImagesGrpcResponse);
+    rpc GetAssetImages(SettingsManagerGetAssetImagesGrpcRequest) returns (SettingsManagerGetAssetImagesGrpcResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
