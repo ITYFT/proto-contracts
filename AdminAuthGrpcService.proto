@@ -91,9 +91,20 @@ message AdminAuthCreateScopeGrpcResponse{
     optional string ScopeId = 1;
 }
 
+message AdminAuthGoogleGrpcRequest{
+    string IdToken = 1;
+}
+
+message AdminAuthGoogleGrpcResponse{
+    optional AuthError Error = 1;
+    optional string AuthToken = 2;
+    optional string RefreshToken = 3;
+}
+
 
 service AdminAuthService {
     rpc Register(AdminAuthRegisterUserGrpcRequest) returns (AdminAuthRegisterUserGrpcResponse);
+    rpc AuthenticateGoogle(AdminAuthGoogleGrpcRequest) returns (AdminAuthGoogleGrpcResponse);
     rpc Refresh(AdminAuthRefreshGrpcRequest) returns (AdminAuthRefreshGrpcResponse);
     rpc UpdatePassword(AdminAuthUpdatePasswordGrpcRequest) returns (AdminAuthUpdatePasswordGrpcResponse);
     rpc Authenticate(AdminAuthenticateGrpcRequest) returns (AdminAuthenticateGrpcResponse);
