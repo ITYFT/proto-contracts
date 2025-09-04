@@ -432,6 +432,15 @@ message SettingsManagerGetAssetImagesGrpcResponse {
   repeated SettingsManagerAssetImageResult Results = 1;
 }
 
+message SettingsManagerDefaultAssetImage {
+    string Image = 1;
+}
+
+message SettingsManagerDefaultAssetImageGrpcModelResponse {
+    optional SettingsManagerDefaultAssetImage DefaultAssetImage = 1;
+    repeated SettingsManagerGrpcError Errors = 2;
+}
+
 service SettingsManagerGrpcService{
     rpc InsertOrReplaceCollateral(SettingsManagerCollateralGrpcModel) returns (SettingsManagerInsertOrReplaceCollateralGrpcResponse);
     rpc InsertOrReplaceDayOffProfile(SettingsManagerDayOffProfileGrpcModel) returns (SettingsManagerInsertOrReplaceDayOffProfileGrpcResponse);
@@ -457,6 +466,7 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceDefaultMarkupProfile(SettingsManagerDefaultMarkupProfile) returns (SettingsManagerDefaultMarkupProfileGrpcModelResponse);
     rpc InsertOrReplaceDefaultTradingGroup(SettingsManagerDefaultTradingGroup) returns (SettingsManagerDefaultTradingGroupGrpcModelResponse);
     rpc InsertOrReplaceAssetImages(SettingsManagerInsertOrReplaceAssetImagesGrpcRequest) returns (SettingsManagerInsertOrReplaceAssetImagesGrpcResponse);
+    rpc InsertOrReplaceDefaultAssetImage(SettingsManagerDefaultAssetImage) returns (SettingsManagerDefaultAssetImageGrpcModelResponse);
     rpc GetAssetImages(SettingsManagerGetAssetImagesGrpcRequest) returns (SettingsManagerGetAssetImagesGrpcResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
