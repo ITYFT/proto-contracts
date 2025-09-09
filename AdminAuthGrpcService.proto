@@ -90,7 +90,31 @@ message AdminAuthGoogleGrpcResponse{
     optional string RefreshToken = 3;
 }
 
+message AdminAuthAddUserToGroupGrpcRequest{
+    string UserId = 1;
+    string GroupId = 2;
+}
+
+message AdminAuthRemoveUserFromGroupGrpcRequest{
+    string UserId = 1;
+    string GroupId = 2;
+}
+
+message AdminAuthAddPermissionToGroupGrpcRequest{
+    string GroupId = 1;
+    string PermissionId = 2;
+}
+
+message AdminAuthRemovePermissionFromGroupGrpcRequest{
+    string GroupId = 1;
+    string PermissionId = 2;
+}
+
 service AdminAuthService {
+    rpc AddUserToGroup(AdminAuthAddUserToGroupGrpcRequest) returns (google.protobuf.Empty);
+    rpc RemoveUserFromGroup(AdminAuthRemoveUserFromGroupGrpcRequest) returns (google.protobuf.Empty);
+    rpc AddPermissionToGroup(AdminAuthAddPermissionToGroupGrpcRequest) returns (google.protobuf.Empty);
+    rpc RemovePermissionFromGroup(AdminAuthRemovePermissionFromGroupGrpcRequest) returns (google.protobuf.Empty);
     rpc Register(AdminAuthRegisterUserGrpcRequest) returns (AdminAuthRegisterUserGrpcResponse);
     rpc AuthenticateGoogle(AdminAuthGoogleGrpcRequest) returns (AdminAuthGoogleGrpcResponse);
     rpc Refresh(AdminAuthRefreshGrpcRequest) returns (AdminAuthRefreshGrpcResponse);
