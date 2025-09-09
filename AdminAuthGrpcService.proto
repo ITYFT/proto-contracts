@@ -110,7 +110,34 @@ message AdminAuthRemovePermissionFromGroupGrpcRequest{
     string PermissionId = 2;
 }
 
+message AdminAuthGetGroupsGrpcRequest{
+    optional string Login = 1;
+    optional string GroupName = 2;
+}
+
+message AdminAuthGroupGrpcModel{
+    string GroupId = 1;
+    string Name = 2;
+    optional string Description = 3;
+    repeated string Permissions = 4;
+}
+
+message AdminAuthGetGroupsGrpcResponse{
+    repeated AdminAuthGroupGrpcModel Groups = 1;
+}
+
+message AdminAuthGetPermissionsGrpcRequest{
+    optional string Login = 1;
+    optional string GroupName = 2;
+}
+
+message AdminAuthGetPermissionsGrpcResponse{
+    repeated string Permissions = 1;
+}
+
 service AdminAuthService {
+    rpc GetPermissions(AdminAuthGetPermissionsGrpcRequest) returns (AdminAuthGetPermissionsGrpcResponse);
+    rpc GetGroups(AdminAuthGetGroupsGrpcRequest) returns (AdminAuthGetGroupsGrpcResponse);
     rpc AddUserToGroup(AdminAuthAddUserToGroupGrpcRequest) returns (google.protobuf.Empty);
     rpc RemoveUserFromGroup(AdminAuthRemoveUserFromGroupGrpcRequest) returns (google.protobuf.Empty);
     rpc AddPermissionToGroup(AdminAuthAddPermissionToGroupGrpcRequest) returns (google.protobuf.Empty);
