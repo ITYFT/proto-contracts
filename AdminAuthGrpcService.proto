@@ -1,4 +1,3 @@
-
 syntax = "proto3";
 package admin_auth;
 import "google/protobuf/empty.proto";
@@ -11,7 +10,6 @@ enum AuthError{
     InvalidToken = 4;
     StaleToken = 5;
 }
-
 
 message AdminAuthRegisterUserGrpcRequest{
     string Login = 1;
@@ -82,15 +80,6 @@ message AdminAuthCreatePermissionGrpcResponse{
     optional string PermissionId = 1;
 }
 
-message AdminAuthCreateScopeGrpcRequest{
-    string Name = 1;
-    string Description = 2;
-}
-
-message AdminAuthCreateScopeGrpcResponse{
-    optional string ScopeId = 1;
-}
-
 message AdminAuthGoogleGrpcRequest{
     string IdToken = 1;
 }
@@ -101,7 +90,6 @@ message AdminAuthGoogleGrpcResponse{
     optional string RefreshToken = 3;
 }
 
-
 service AdminAuthService {
     rpc Register(AdminAuthRegisterUserGrpcRequest) returns (AdminAuthRegisterUserGrpcResponse);
     rpc AuthenticateGoogle(AdminAuthGoogleGrpcRequest) returns (AdminAuthGoogleGrpcResponse);
@@ -110,7 +98,6 @@ service AdminAuthService {
     rpc Authenticate(AdminAuthenticateGrpcRequest) returns (AdminAuthenticateGrpcResponse);
     rpc CreateGroup(AdminAuthCreateGroupGrpcRequest) returns (AdminAuthCreateGroupGrpcResponse);
     rpc CreatePermission(AdminAuthCreatePermissionGrpcRequest) returns (AdminAuthCreatePermissionGrpcResponse);
-    rpc CreateScope(AdminAuthCreateScopeGrpcRequest) returns (AdminAuthCreateScopeGrpcResponse);
     rpc Validate(AdminAuthValidateJwtRequest) returns (AdminAuthValidateJwtResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
