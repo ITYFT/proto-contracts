@@ -74,6 +74,7 @@ message AdminAuthCreateGroupGrpcResponse{
 message AdminAuthCreatePermissionGrpcRequest{
     string Name = 1;
     string Description = 2;
+    string Resource = 3;
 }
 
 message AdminAuthCreatePermissionGrpcResponse{
@@ -91,23 +92,23 @@ message AdminAuthGoogleGrpcResponse{
 }
 
 message AdminAuthAddUserToGroupGrpcRequest{
-    string UserId = 1;
+    string UserLogin = 1;
     string GroupId = 2;
 }
 
 message AdminAuthRemoveUserFromGroupGrpcRequest{
-    string UserId = 1;
+    string UserLogin = 1;
     string GroupId = 2;
 }
 
 message AdminAuthAddPermissionToGroupGrpcRequest{
     string GroupId = 1;
-    string PermissionId = 2;
+    string PermissionName = 2;
 }
 
 message AdminAuthRemovePermissionFromGroupGrpcRequest{
     string GroupId = 1;
-    string PermissionId = 2;
+    string PermissionName = 2;
 }
 
 message AdminAuthGetGroupsGrpcRequest{
@@ -115,11 +116,16 @@ message AdminAuthGetGroupsGrpcRequest{
     optional string GroupName = 2;
 }
 
+message AdminAuthPermissionGrpcModel{
+    string Name = 1;
+    string Resource = 2;
+}
+
 message AdminAuthGroupGrpcModel{
     string GroupId = 1;
     string Name = 2;
     optional string Description = 3;
-    repeated string Permissions = 4;
+    repeated AdminAuthPermissionGrpcModel Permissions = 4;
 }
 
 message AdminAuthGetGroupsGrpcResponse{
@@ -132,7 +138,7 @@ message AdminAuthGetPermissionsGrpcRequest{
 }
 
 message AdminAuthGetPermissionsGrpcResponse{
-    repeated string Permissions = 1;
+    repeated AdminAuthPermissionGrpcModel Permissions = 1;
 }
 
 service AdminAuthService {
