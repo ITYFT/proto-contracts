@@ -143,10 +143,12 @@ message AdminAuthGetPermissionsGrpcResponse{
 
 message AdminAuthCreateResourceGrpcRequest{
     string Resource = 1;
+    string Description = 2;
 }
 
 message AdminAuthCreateResourceGrpcResponse{
     optional string Resource = 1;
+    optional string Description = 2;
 }
 
 message AdminAuthAddResourceToPermissionGrpcRequest{
