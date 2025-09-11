@@ -369,8 +369,8 @@ message SettingsManagerKeyValueGrpcModel {
 }
 
 enum SettingsManagerLoginKind {
-    RawLogin = 1;
-    Email = 2;
+    RawLogin = 0;
+    Email = 1;
 }
 
 message SettingsManagerPasswordPolicy {
