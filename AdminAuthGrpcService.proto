@@ -5,10 +5,9 @@ import "google/protobuf/empty.proto";
 enum AuthError{
     LoginAlreadyInUse = 0;
     UserNotFound = 1;
-    InvalidLogin = 2;
-    InvalidPassword = 3;
-    InvalidToken = 4;
-    StaleToken = 5;
+    InvalidCredentials = 2;
+    InvalidToken = 3;
+    StaleToken = 4;
 }
 
 message AdminAuthRegisterUserGrpcRequest{
