@@ -133,8 +133,7 @@ message AdminAuthGetGroupsGrpcResponse{
 }
 
 message AdminAuthGetPermissionsGrpcRequest{
-    optional string Login = 1;
-    optional string GroupName = 2;
+    optional string PermissionName = 1;
 }
 
 message AdminAuthGetPermissionsGrpcResponse{
@@ -179,8 +178,24 @@ message AdminAuthGetResourcesGrpcRequest{
     optional string Resource = 1;
 }
 
+message AdminAuthUserGrpcModel{
+    string Login = 1;
+    repeated string Groups = 2;
+    repeated AdminAuthPermissionGrpcModel Permissions = 3;
+}
+
+message AdminAuthGetUsersGrpcRequest{
+    optional string Login = 1;
+}
+
+message AdminAuthGetUsersGrpcResponse{
+    repeated AdminAuthUserGrpcModel Users = 1;
+}
+
 service AdminAuthService {
-    rpc GetResources(AdminAuthGetResourcesGrpcRequest) returns (AdminAuthGetResourcesGrpcResponse);    rpc GetPermissions(AdminAuthGetPermissionsGrpcRequest) returns (AdminAuthGetPermissionsGrpcResponse);
+    rpc GetResources(AdminAuthGetResourcesGrpcRequest) returns (AdminAuthGetResourcesGrpcResponse);
+    rpc GetPermissions(AdminAuthGetPermissionsGrpcRequest) returns (AdminAuthGetPermissionsGrpcResponse);
+    rpc GetUsers(AdminAuthGetUsersGrpcRequest) returns (AdminAuthGetUsersGrpcResponse);
     rpc GetGroups(AdminAuthGetGroupsGrpcRequest) returns (AdminAuthGetGroupsGrpcResponse);
     rpc AddUserToGroup(AdminAuthAddUserToGroupGrpcRequest) returns (AdminAuthGroupUsersGrpcResponse);
     rpc RemoveUserFromGroup(AdminAuthRemoveUserFromGroupGrpcRequest) returns (AdminAuthGroupUsersGrpcResponse);
