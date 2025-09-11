@@ -166,7 +166,17 @@ message AdminAuthGroupUsersGrpcResponse{
     repeated string UserLogins = 1;
 }
 
+message AdminAuthResourceGrpcModel{
+    string Resource = 1;
+    optional string Description = 2;
+}
+
+message AdminAuthGetResourcesGrpcResponse{
+    repeated AdminAuthResourceGrpcModel Resources = 1;
+}
+
 service AdminAuthService {
+    rpc GetResources(google.protobuf.Empty) returns (AdminAuthGetResourcesGrpcResponse);
     rpc GetPermissions(AdminAuthGetPermissionsGrpcRequest) returns (AdminAuthGetPermissionsGrpcResponse);
     rpc GetGroups(AdminAuthGetGroupsGrpcRequest) returns (AdminAuthGetGroupsGrpcResponse);
     rpc AddUserToGroup(AdminAuthAddUserToGroupGrpcRequest) returns (AdminAuthGroupUsersGrpcResponse);
