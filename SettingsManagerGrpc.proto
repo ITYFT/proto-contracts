@@ -368,9 +368,20 @@ message SettingsManagerKeyValueGrpcModel {
     optional string Description = 3;
 }
 
+enum SettingsManagerLoginKind {
+    RawLogin = 1;
+    Email = 2;
+}
+
+message SettingsManagerPasswordPolicy {
+    bool RequireUppercase = 1;
+    bool RequireNumber = 2;
+    bool RequireSpecial = 3;
+}
+
 message SettingsManagerAuthRulesGrpcModel {
-    string LoginRegex = 1;
-    string PasswordRegex = 2;
+    SettingsManagerLoginKind LoginKind = 1;
+    SettingsManagerPasswordPolicy PasswordPolicy = 2;
     string BrandName = 3;
 }
 
