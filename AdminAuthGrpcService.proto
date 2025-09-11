@@ -175,9 +175,12 @@ message AdminAuthGetResourcesGrpcResponse{
     repeated AdminAuthResourceGrpcModel Resources = 1;
 }
 
+message AdminAuthGetResourcesGrpcRequest{
+    optional string Resource = 1;
+}
+
 service AdminAuthService {
-    rpc GetResources(google.protobuf.Empty) returns (AdminAuthGetResourcesGrpcResponse);
-    rpc GetPermissions(AdminAuthGetPermissionsGrpcRequest) returns (AdminAuthGetPermissionsGrpcResponse);
+    rpc GetResources(AdminAuthGetResourcesGrpcRequest) returns (AdminAuthGetResourcesGrpcResponse);    rpc GetPermissions(AdminAuthGetPermissionsGrpcRequest) returns (AdminAuthGetPermissionsGrpcResponse);
     rpc GetGroups(AdminAuthGetGroupsGrpcRequest) returns (AdminAuthGetGroupsGrpcResponse);
     rpc AddUserToGroup(AdminAuthAddUserToGroupGrpcRequest) returns (AdminAuthGroupUsersGrpcResponse);
     rpc RemoveUserFromGroup(AdminAuthRemoveUserFromGroupGrpcRequest) returns (AdminAuthGroupUsersGrpcResponse);
