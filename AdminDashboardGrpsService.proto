@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package admin_dashboard;
 
-import "google/protobuf/timestamp.proto";
-
 enum TimeFrame {
     TIME_FRAME_UNSPECIFIED = 0;
     MINUTE = 1;
@@ -15,12 +13,12 @@ enum TimeFrame {
 
 message DashboardRequest {
     TimeFrame Frame = 1;
-    google.protobuf.Timestamp From = 2;
-    google.protobuf.Timestamp To = 3;
+    int64 From = 2;
+    int64 To = 3;
 }
 
 message DashboardPoint {
-    google.protobuf.Timestamp Period = 1;
+    int64 Period = 1;
     int64 Count = 2;
 }
 
