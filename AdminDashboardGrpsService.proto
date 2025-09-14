@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package dashboard;
+
+import "google/protobuf/timestamp.proto";
+
+enum TimeFrame {
+    TIME_FRAME_UNSPECIFIED = 0;
+    MINUTE = 1;
+    HOUR = 2;
+    DAY = 3;
+    WEEK = 4;
+    MONTH = 5;
+}
+
+message DashboardRequest {
+    TimeFrame Frame = 1;
+    google.protobuf.Timestamp From = 2;
+    google.protobuf.Timestamp To = 3;
+}
+
+message DashboardPoint {
+    google.protobuf.Timestamp Period = 1;
+    int64 Count = 2;
+}
+
+message DashboardResponse {
+    repeated DashboardPoint Points = 1;
+}
+
+service DashboardReportsService {
+    rpc AccountsDashboard (DashboardRequest) returns (DashboardResponse);
+    rpc GroupByOpenPositionDashboard (DashboardRequest) returns (DashboardResponse);
+    rpc GroupByClosePositionDashboard (DashboardRequest) returns (DashboardResponse);
+    rpc OrdersDashboard (DashboardRequest) returns (DashboardResponse);
+    rpc ClientsDashboard (DashboardRequest) returns (DashboardResponse);
+    rpc TradersDashboard (DashboardRequest) returns (DashboardResponse);
