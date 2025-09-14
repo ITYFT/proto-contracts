@@ -35,3 +35,4 @@ service DashboardReportsService {
     rpc OrdersDashboard (DashboardRequest) returns (DashboardResponse);
     rpc ClientsDashboard (DashboardRequest) returns (DashboardResponse);
     rpc TradersDashboard (DashboardRequest) returns (DashboardResponse);
+}
