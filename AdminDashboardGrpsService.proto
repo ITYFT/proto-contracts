@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package admin_dashboard;
 
+import "google/protobuf/empty.proto";
+
 enum TimeFrame {
     TIME_FRAME_UNSPECIFIED = 0;
     MINUTE = 1;
@@ -33,4 +35,5 @@ service DashboardReportsService {
     rpc OrdersDashboard (DashboardRequest) returns (DashboardResponse);
     rpc ClientsDashboard (DashboardRequest) returns (DashboardResponse);
     rpc TradersDashboard (DashboardRequest) returns (DashboardResponse);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
