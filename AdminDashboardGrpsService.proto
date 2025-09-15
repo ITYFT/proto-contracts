@@ -13,7 +13,37 @@ enum TimeFrame {
     MONTH = 5;
 }
 
-message DashboardRequest {
+message AccountsDashboardRequest {
+    TimeFrame Frame = 1;
+    int64 From = 2;
+    int64 To = 3;
+}
+
+message GroupByOpenPositionDashboardRequest {
+    TimeFrame Frame = 1;
+    int64 From = 2;
+    int64 To = 3;
+}
+
+message GroupByClosePositionDashboardRequest {
+    TimeFrame Frame = 1;
+    int64 From = 2;
+    int64 To = 3;
+}
+
+message OrdersDashboardRequest {
+    TimeFrame Frame = 1;
+    int64 From = 2;
+    int64 To = 3;
+}
+
+message ClientsDashboardRequest {
+    TimeFrame Frame = 1;
+    int64 From = 2;
+    int64 To = 3;
+}
+
+message TradersDashboardRequest {
     TimeFrame Frame = 1;
     int64 From = 2;
     int64 To = 3;
@@ -29,11 +59,11 @@ message DashboardResponse {
 }
 
 service DashboardReportsService {
-    rpc AccountsDashboard (DashboardRequest) returns (DashboardResponse);
-    rpc GroupByOpenPositionDashboard (DashboardRequest) returns (DashboardResponse);
-    rpc GroupByClosePositionDashboard (DashboardRequest) returns (DashboardResponse);
-    rpc OrdersDashboard (DashboardRequest) returns (DashboardResponse);
-    rpc ClientsDashboard (DashboardRequest) returns (DashboardResponse);
-    rpc TradersDashboard (DashboardRequest) returns (DashboardResponse);
+    rpc AccountsDashboard             (AccountsDashboardRequest)             returns (DashboardResponse);
+    rpc GroupByOpenPositionDashboard  (GroupByOpenPositionDashboardRequest)  returns (DashboardResponse);
+    rpc GroupByClosePositionDashboard (GroupByClosePositionDashboardRequest) returns (DashboardResponse);
+    rpc OrdersDashboard               (OrdersDashboardRequest)               returns (DashboardResponse);
+    rpc ClientsDashboard              (ClientsDashboardRequest)              returns (DashboardResponse);
+    rpc TradersDashboard              (TradersDashboardRequest)              returns (DashboardResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
