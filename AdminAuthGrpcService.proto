@@ -70,16 +70,6 @@ message AdminAuthCreateGroupGrpcResponse{
     optional string GroupId = 1;
 }
 
-message AdminAuthCreatePermissionGrpcRequest{
-    string Name = 1;
-    string Description = 2;
-    repeated string Resources = 3;
-}
-
-message AdminAuthCreatePermissionGrpcResponse{
-    optional string PermissionId = 1;
-}
-
 message AdminAuthGoogleGrpcRequest{
     string IdToken = 1;
 }
@@ -100,14 +90,14 @@ message AdminAuthRemoveUserFromGroupGrpcRequest{
     string GroupId = 2;
 }
 
-message AdminAuthAddPermissionToGroupGrpcRequest{
+message AdminAuthAddResourceToGroupGrpcRequest{
     string GroupId = 1;
-    string PermissionName = 2;
+    string Resource = 2;
 }
 
-message AdminAuthRemovePermissionFromGroupGrpcRequest{
+message AdminAuthRemoveResourceFromGroupGrpcRequest{
     string GroupId = 1;
-    string PermissionName = 2;
+    string Resource = 2;
 }
 
 message AdminAuthGetGroupsGrpcRequest{
@@ -115,28 +105,15 @@ message AdminAuthGetGroupsGrpcRequest{
     optional string GroupName = 2;
 }
 
-message AdminAuthPermissionGrpcModel{
-    string Name = 1;
-    repeated string Resources = 2;
-}
-
 message AdminAuthGroupGrpcModel{
     string GroupId = 1;
     string Name = 2;
     optional string Description = 3;
-    repeated AdminAuthPermissionGrpcModel Permissions = 4;
+    repeated AdminAuthResourceGrpcModel Resources = 4;
 }
 
 message AdminAuthGetGroupsGrpcResponse{
     repeated AdminAuthGroupGrpcModel Groups = 1;
-}
-
-message AdminAuthGetPermissionsGrpcRequest{
-    optional string PermissionName = 1;
-}
-
-message AdminAuthGetPermissionsGrpcResponse{
-    repeated AdminAuthPermissionGrpcModel Permissions = 1;
 }
 
 message AdminAuthCreateResourceGrpcRequest{
@@ -148,13 +125,6 @@ message AdminAuthCreateResourceGrpcResponse{
     optional string Resource = 1;
     optional string Description = 2;
 }
-
-message AdminAuthAddResourceToPermissionGrpcRequest{
-    string PermissionName = 1;
-    string Resource = 2;
-}
-
-message AdminAuthAddResourceToPermissionGrpcResponse{}
 
 message AdminAuthGroupGrpcResponse{
     AdminAuthGroupGrpcModel Group = 1;
@@ -180,7 +150,7 @@ message AdminAuthGetResourcesGrpcRequest{
 message AdminAuthUserGrpcModel{
     string Login = 1;
     repeated string Groups = 2;
-    repeated AdminAuthPermissionGrpcModel Permissions = 3;
+    repeated AdminAuthResourceGrpcModel Resources = 3;
 }
 
 message AdminAuthGetUsersGrpcRequest{
@@ -193,22 +163,19 @@ message AdminAuthGetUsersGrpcResponse{
 
 service AdminAuthService {
     rpc GetResources(AdminAuthGetResourcesGrpcRequest) returns (AdminAuthGetResourcesGrpcResponse);
-    rpc GetPermissions(AdminAuthGetPermissionsGrpcRequest) returns (AdminAuthGetPermissionsGrpcResponse);
     rpc GetUsers(AdminAuthGetUsersGrpcRequest) returns (AdminAuthGetUsersGrpcResponse);
     rpc GetGroups(AdminAuthGetGroupsGrpcRequest) returns (AdminAuthGetGroupsGrpcResponse);
     rpc AddUserToGroup(AdminAuthAddUserToGroupGrpcRequest) returns (AdminAuthGroupUsersGrpcResponse);
     rpc RemoveUserFromGroup(AdminAuthRemoveUserFromGroupGrpcRequest) returns (AdminAuthGroupUsersGrpcResponse);
-    rpc AddPermissionToGroup(AdminAuthAddPermissionToGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
-    rpc RemovePermissionFromGroup(AdminAuthRemovePermissionFromGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
+    rpc AddResourceToGroup(AdminAuthAddResourceToGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
+    rpc RemoveResourceFromGroup(AdminAuthRemoveResourceFromGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
     rpc Register(AdminAuthRegisterUserGrpcRequest) returns (AdminAuthRegisterUserGrpcResponse);
     rpc AuthenticateGoogle(AdminAuthGoogleGrpcRequest) returns (AdminAuthGoogleGrpcResponse);
     rpc Refresh(AdminAuthRefreshGrpcRequest) returns (AdminAuthRefreshGrpcResponse);
     rpc UpdatePassword(AdminAuthUpdatePasswordGrpcRequest) returns (AdminAuthUpdatePasswordGrpcResponse);
     rpc Authenticate(AdminAuthenticateGrpcRequest) returns (AdminAuthenticateGrpcResponse);
     rpc CreateGroup(AdminAuthCreateGroupGrpcRequest) returns (AdminAuthCreateGroupGrpcResponse);
-    rpc CreatePermission(AdminAuthCreatePermissionGrpcRequest) returns (AdminAuthCreatePermissionGrpcResponse);
     rpc CreateResource(AdminAuthCreateResourceGrpcRequest) returns (AdminAuthCreateResourceGrpcResponse);
-    rpc AddResourceToPermission(AdminAuthAddResourceToPermissionGrpcRequest) returns (AdminAuthAddResourceToPermissionGrpcResponse);
     rpc Validate(AdminAuthValidateJwtRequest) returns (AdminAuthValidateJwtResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
