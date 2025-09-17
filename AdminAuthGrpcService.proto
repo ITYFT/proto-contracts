@@ -151,6 +151,7 @@ message AdminAuthUserGrpcModel{
     string Login = 1;
     repeated string Groups = 2;
     repeated AdminAuthResourceGrpcModel Resources = 3;
+    bool IsSuperAdmin = 4;
 }
 
 message AdminAuthGetUsersGrpcRequest{
@@ -159,6 +160,15 @@ message AdminAuthGetUsersGrpcRequest{
 
 message AdminAuthGetUsersGrpcResponse{
     repeated AdminAuthUserGrpcModel Users = 1;
+}
+
+message AdminAuthSetSuperUserGrpcRequest{
+    string Login = 1;
+}
+
+message AdminAuthSetSuperUserGrpcResponse{
+    optional AuthError Error = 1;
+    optional bool IsSuperAdmin = 2;
 }
 
 service AdminAuthService {
@@ -177,5 +187,6 @@ service AdminAuthService {
     rpc CreateGroup(AdminAuthCreateGroupGrpcRequest) returns (AdminAuthCreateGroupGrpcResponse);
     rpc CreateResource(AdminAuthCreateResourceGrpcRequest) returns (AdminAuthCreateResourceGrpcResponse);
     rpc Validate(AdminAuthValidateJwtRequest) returns (AdminAuthValidateJwtResponse);
+    rpc SetSuperUser(AdminAuthSetSuperUserGrpcRequest) returns (AdminAuthSetSuperUserGrpcResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
