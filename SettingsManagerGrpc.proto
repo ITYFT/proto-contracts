@@ -205,88 +205,11 @@ message SettingsManagerInsertOrReplaceTradingProfileGrpcResponse {
 }
 
 message SettingsManagerBrandImageGrpcModel {
-    string Image = 1;
+    string ImageBase = 1;
     string Mime = 2;
-    string ImageType = 3;
-}
-
-message SettingsManagerInsertOrReplaceBrandImageGrpcResponse {
-    optional SettingsManagerBrandImageGrpcModel BrandImage = 1;
-    repeated SettingsManagerGrpcError Errors = 2;
-}
-
-message SettingsManagerTerminalSettingsGrpcModel {
-    bool Calendar = 1;
-    bool News = 2;
-    bool LiveChat = 3;
-    optional string Deposit = 4;
-    optional string Withdrawal = 5;
-    bool Transfer = 6;
-    bool Dashboard = 7;
-    bool AccountCreation = 8;
-    bool ShowNotifications = 9;
-    bool ShowDeposit = 10;
-    bool ShowLanguage = 11;
-    optional string LanguageList = 12;
-    bool ShowCompanyLogo = 13;
-    bool ShowHeatMap = 14;
-    bool ShowHowTo = 15;
-    bool ShowWithdraw = 16;
-    bool ShowSecurity = 17;
-    bool ShowVerification = 18;
-    bool ShowProfile = 19;
-    optional string BrandName = 20;
-    optional string BrandCopyrights = 21;
-    bool ShowLeaderboard = 22;
-    bool ShowPoweredBy = 23;
-    bool ShowAiAssistant = 24;
-    bool ShowDiscordCommunity = 25;
-    bool ShowPoweredBySidebar = 26;
-    bool EnableEmailVerification = 27;
 }
 
 
-message SettingsManagerInsertOrReplaceFunctionalSettingsGrpcResponse {
-    optional SettingsManagerFunctionalSettingsGrpcModel FunctionalSettings = 1;
-    repeated SettingsManagerGrpcError Errors = 2;
-}
-
-
-message SettingsManagerFunctionalSettingsGrpcModel {
-    bool ShowRegisterPage = 1;
-    bool ShowLoginPage = 2;
-    optional string ProfileLink = 3;
-    optional string KycVerification = 4;
-    optional string Security = 5;
-    optional string LogoutRedirectUrl = 6;
-    optional string SighUpUrl = 7;
-    optional string About = 8;
-    optional string Support = 9;
-    optional string Terms = 10;
-    optional string Policy = 11;
-    optional string LoginLogoWidth = 12;
-    optional string LoginLogoHeight = 13;
-    optional string TerminalLogoWidth = 14;
-    optional string TerminalLogoHeight = 15;
-    optional string DiscordCommunityUrl = 16;
-    optional string DiscordCommunityLinkText = 17;
-    optional string PoweredByLogoWidth = 18;
-    optional string PoweredByLogoHeight = 19;
-    optional string PoweredByLogoLink = 20;
-    optional string PoweredByLogoTooltip = 21;
-    bool EnableSentry = 22;
-    optional string SentryToken = 23;
-    bool EnableGtm = 24;
-    optional string GtmId = 25;
-    bool EnableLiveChat = 26;
-    optional string LiveChatScript = 27;
-    optional string TheAllNew = 28;
-    optional string CrossMargin = 29;
-    optional string TradingPlatform = 30;
-    optional string LoginPageHeadline = 31;
-    optional string LoginPageHeadlineColor = 32;
-    optional string SentryProject = 33;
-}
 
 message SettingsManagerMdeProfileGrpcModel {
   string Id = 1;
@@ -319,12 +242,6 @@ message SettingsManagerMdeLiquidityLevelGrpcModel {
 
 message SettingsManagerMdeProfileLiquidityGrpcModelResponse {
     optional SettingsManagerMdeLiquidityGrpcModel MdeLiquidity = 1;
-    repeated SettingsManagerGrpcError Errors = 2;
-}
-
-
-message SettingsManagerTerminalSettingsGrpcModelResponse {
-    optional SettingsManagerTerminalSettingsGrpcModel TerminalSettings = 1;
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
@@ -453,32 +370,114 @@ message SettingsManagerDefaultAssetImageGrpcModelResponse {
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
+message SettingsManagerBrandSettingsGrpcModel{
+    bool Calendar = 1;
+    bool News = 2;
+    bool LiveChat = 3;
+    optional string Deposit = 4;
+    optional string Withdrawal = 5;
+    bool Transfer = 6;
+    bool Dashboard = 7;
+    bool AccountCreation = 8;
+    bool ShowNotifications = 9;
+    bool ShowDeposit = 10;
+    bool ShowLanguage = 11;
+    optional string LanguageList = 12;
+    bool ShowCompanyLogo = 13;
+    bool ShowHeatMap = 14;
+    bool ShowHowTo = 15;
+    bool ShowWithdraw = 16;
+    bool ShowSecurity = 17;
+    bool ShowVerification = 18;
+    bool ShowProfile = 19;
+    optional string BrandName = 20;
+    optional string BrandCopyrights = 21;
+    bool ShowLeaderboard = 22;
+    bool ShowPoweredBy = 23;
+    bool ShowAiAssistant = 24;
+    bool ShowDiscordCommunity = 25;
+    bool ShowPoweredBySidebar = 26;
+    bool EnableEmailVerification = 27;
+
+    bool ShowRegisterPage = 28;
+    bool ShowLoginPage = 29;
+    optional string ProfileLink = 30;
+    optional string KycVerification = 31;
+    optional string Security = 32;
+    optional string LogoutRedirectUrl = 33;
+    optional string SighUpUrl = 34;          
+    optional string About = 35;
+    optional string Support = 36;
+    optional string Terms = 37;
+    optional string Policy = 38;
+    optional string LoginLogoWidth = 39;
+    optional string LoginLogoHeight = 40;
+    optional string TerminalLogoWidth = 41;
+    optional string TerminalLogoHeight = 42;
+    optional string DiscordCommunityUrl = 43;
+    optional string DiscordCommunityLinkText = 44;
+    optional string PoweredByLogoWidth = 45;
+    optional string PoweredByLogoHeight = 46;
+    optional string PoweredByLogoLink = 47;
+    optional string PoweredByLogoTooltip = 48;
+    bool EnableSentry = 49;
+    optional string SentryToken = 50;
+    bool EnableGtm = 51;
+    optional string GtmId = 52;
+    bool EnableLiveChat = 53;
+    optional string LiveChatScript = 54;
+    optional string TheAllNew = 55;
+    optional string CrossMargin = 56;
+    optional string TradingPlatform = 57;
+    optional string LoginPageHeadline = 58;
+    optional string LoginPageHeadlineColor = 59;
+    optional string SentryProject = 60;
+
+    optional SettingsManagerBrandImageGrpcModel  Favicon = 61;
+    optional SettingsManagerBrandImageGrpcModel  TerminalLogo = 62;
+    optional SettingsManagerBrandImageGrpcModel  LoginLogo = 63;
+    optional SettingsManagerBrandImageGrpcModel  LoginImage = 64;
+    optional SettingsManagerBrandImageGrpcModel  PwaIcon = 65;
+    optional SettingsManagerBrandImageGrpcModel  ProfileImage = 66;
+    optional SettingsManagerBrandImageGrpcModel  LoginImageMob = 67;
+    optional SettingsManagerBrandImageGrpcModel  PoweredByLogo = 68;
+    optional SettingsManagerBrandImageGrpcModel  DiscordIconImage = 69; 
+}
+
+message SettingsManagerInsertOrReplaceBrandSettingsGrpcResponse {
+    optional SettingsManagerBrandSettingsGrpcModel BrandSettings = 1;
+    repeated SettingsManagerGrpcError Errors = 2;
+}
+
 service SettingsManagerGrpcService{
     rpc InsertOrReplaceCollateral(SettingsManagerCollateralGrpcModel) returns (SettingsManagerInsertOrReplaceCollateralGrpcResponse);
     rpc InsertOrReplaceDayOffProfile(SettingsManagerDayOffProfileGrpcModel) returns (SettingsManagerInsertOrReplaceDayOffProfileGrpcResponse);
     rpc InsertOrReplaceInstrumentGroup(SettingsManagerInstrumentsGroupGrpcModel) returns (SettingsManagerInsertOrReplaceInstrumentsGroupGrpcResponse);
     rpc InsertOrReplaceMarkupProfile(SettingsManagerMarkupProfileGrpcModel) returns (SettingsManagerInsertOrReplaceMarkupProfileGrpcResponse);
+    rpc InsertOrReplaceMdeLiquidityProfile(SettingsManagerMdeLiquidityGrpcModel) returns (SettingsManagerMdeProfileLiquidityGrpcModelResponse);
+    rpc InsertOrReplaceDefaultMarkupProfile(SettingsManagerDefaultMarkupProfile) returns (SettingsManagerDefaultMarkupProfileGrpcModelResponse);
+    rpc InsertOrReplaceDefaultTradingGroup(SettingsManagerDefaultTradingGroup) returns (SettingsManagerDefaultTradingGroupGrpcModelResponse);
     rpc InsertOrReplaceSwapProfile(SettingsManagerSwapProfileGrpcModel) returns (SettingsManagerInsertOrReplaceSwapProfileGrpcResponse);
     rpc InsertOrReplaceSwapSchedule(SettingsManagerSwapScheduleGrpcModel) returns (SettingsManagerInsertOrReplaceSwapScheduleGrpcResponse);
     rpc InsertOrReplaceTradingGroup(SettingsManagerTradingGroupGrpcModel) returns (SettingsManagerInsertOrReplaceTradingGroupGrpcResponse);
     rpc InsertOrReplaceInstrument(SettingsManagerInstrumentGrpcModel) returns (SettingsManagerInsertOrReplaceInstrumentGrpcResponse);
     rpc InsertOrReplaceTradingProfile(SettingsManagerTradingProfileGrpcModel) returns (SettingsManagerInsertOrReplaceTradingProfileGrpcResponse);
+    rpc InsertOrReplaceMdeProfile(SettingsManagerMdeProfileGrpcModel) returns (SettingsManagerMdeProfileGrpcModelResponse);
+
     rpc InsertOrReplaceLocalization(SettingsManagerInsertOrReplaceLocalizationGrpcModel) returns (SettingsManagerLocalizationGrpcModelResponse);
     rpc DeleteLocalization(SettingsManagerDeleteLocalizationGrpcModel) returns (SettingsManagerLocalizationGrpcModelResponse);
     rpc DisableLocalization(SettingsManagerLocalizationDisableGrpcModel) returns (SettingsManagerLocalizationGrpcModelResponse);
     rpc DeleteLocalizationRow(SettingsManagerLocalizationDeleteRowGrpcModel) returns (SettingsManagerLocalizationGrpcModelResponse);
     rpc InsertOrReplaceLocalizationRows(SettingsManagerLocalizationRowsGrpcModel) returns (SettingsManagerLocalizationGrpcModelResponse);
+
     rpc InsertOrReplaceKeyValues(SettingsManagerKeyValuesGrpcModel) returns (SettingsManagerKeyValuesGrpcModelResponse);
-    rpc InsertOrReplaceBrandImage(SettingsManagerBrandImageGrpcModel) returns (SettingsManagerInsertOrReplaceBrandImageGrpcResponse);
-    rpc InsertOrReplaceBrandFunctionalSettings(SettingsManagerFunctionalSettingsGrpcModel) returns (SettingsManagerInsertOrReplaceFunctionalSettingsGrpcResponse);
-    rpc InsertOrReplaceBrandTerminalSettings(SettingsManagerTerminalSettingsGrpcModel) returns (SettingsManagerTerminalSettingsGrpcModelResponse);
-    rpc InsertOrReplaceMdeProfile(SettingsManagerMdeProfileGrpcModel) returns (SettingsManagerMdeProfileGrpcModelResponse);
+
+    rpc InsertOrReplaceBrandSettings(SettingsManagerBrandSettingsGrpcModel) returns (SettingsManagerInsertOrReplaceBrandSettingsGrpcResponse);
+    
     rpc InsertOrReplaceAuthRules(SettingsManagerAuthRulesGrpcModel) returns (SettingsManagerAuthRulesGrpcModelResponse);
-    rpc InsertOrReplaceMdeLiquidityProfile(SettingsManagerMdeLiquidityGrpcModel) returns (SettingsManagerMdeProfileLiquidityGrpcModelResponse);
-    rpc InsertOrReplaceDefaultMarkupProfile(SettingsManagerDefaultMarkupProfile) returns (SettingsManagerDefaultMarkupProfileGrpcModelResponse);
-    rpc InsertOrReplaceDefaultTradingGroup(SettingsManagerDefaultTradingGroup) returns (SettingsManagerDefaultTradingGroupGrpcModelResponse);
     rpc InsertOrReplaceAssetImages(SettingsManagerInsertOrReplaceAssetImagesGrpcRequest) returns (SettingsManagerInsertOrReplaceAssetImagesGrpcResponse);
     rpc InsertOrReplaceDefaultAssetImage(SettingsManagerDefaultAssetImage) returns (SettingsManagerDefaultAssetImageGrpcModelResponse);
     rpc GetAssetImages(SettingsManagerGetAssetImagesGrpcRequest) returns (SettingsManagerGetAssetImagesGrpcResponse);
+    
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
