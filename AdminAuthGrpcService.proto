@@ -96,7 +96,7 @@ message AdminAuthAddResourceToGroupGrpcRequest{
 }
 
 message AdminAuthRemoveResourceFromGroupGrpcRequest{
-    string GroupId = 1;
+    string GroupName = 1;
     string Resource = 2;
 }
 
