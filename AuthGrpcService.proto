@@ -3,11 +3,36 @@ syntax = "proto3";
 package yft_auth;
 import "google/protobuf/empty.proto";
 
-enum AuthError{
-    LoginAlreadyInUse = 0;
-    AuthCreadsNotFound = 1;
-    InvalidLogin = 2;
-    InvalidPassword = 3;
+enum AuthError {
+    LoginAlreadyInUse        = 0;
+    AuthCreadsNotFound       = 1;
+    InvalidLogin             = 2;
+    InvalidPassword          = 3;
+
+    LoginTooShort            = 4;
+    LoginTooLong             = 5;
+    LoginHasWhitespace       = 6;
+    LoginInvalidChars        = 7;
+    
+    EmailMissingAt           = 8;
+    EmailLocalTooLong        = 9;
+    EmailDomainTooLong       = 10;
+    EmailLocalDotRules       = 11;
+    EmailLocalInvalidChars   = 12;
+    EmailDomainNoDot         = 13;
+    EmailLabelEmpty          = 14;
+    EmailLabelTooLong        = 15;
+    EmailLabelEdgeHyphen     = 16;
+    EmailLabelInvalidChars   = 17;
+    EmailTldInvalid          = 18;
+
+    PasswordTooShort         = 19;
+    PasswordTooLong          = 20;
+    PasswordMissingUppercase = 21;
+    PasswordMissingNumber    = 22;
+    PasswordMissingSpecial   = 23;
+
+    InvalidBrandName         = 24;
 }
 
 message AuthRegisterClientGrpcRequest{
