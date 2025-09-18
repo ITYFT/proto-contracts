@@ -82,12 +82,12 @@ message AdminAuthGoogleGrpcResponse{
 
 message AdminAuthAddUserToGroupGrpcRequest{
     string UserLogin = 1;
-    string GroupId = 2;
+    string GroupName = 2;
 }
 
 message AdminAuthRemoveUserFromGroupGrpcRequest{
     string UserLogin = 1;
-    string GroupId = 2;
+    string GroupName = 2;
 }
 
 message AdminAuthAddResourceToGroupGrpcRequest{
