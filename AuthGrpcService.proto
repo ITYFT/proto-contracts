@@ -31,6 +31,8 @@ enum AuthError {
     PasswordMissingUppercase = 21;
     PasswordMissingNumber    = 22;
     PasswordMissingSpecial   = 23;
+
+    InvalidBrandName         = 24;
 }
 
 message AuthRegisterClientGrpcRequest{
