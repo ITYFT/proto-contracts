@@ -442,6 +442,8 @@ message SettingsManagerBrandSettingsGrpcModel{
     optional SettingsManagerBrandImageGrpcModel  LoginImageMob = 67;
     optional SettingsManagerBrandImageGrpcModel  PoweredByLogo = 68;
     optional SettingsManagerBrandImageGrpcModel  DiscordIconImage = 69; 
+
+    optional string Brand = 70;
 }
 
 message SettingsManagerInsertOrReplaceBrandSettingsGrpcResponse {
