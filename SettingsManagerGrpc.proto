@@ -447,18 +447,6 @@ message SettingsManagerBrandSettingsGrpcModel{
     optional string ManifestJson = 71;
 }
 
-message SettingsManagerBrandGrpcModel{
-    string Name = 1;
-    string PlatformHost = 2;
-}
-
-message InsertOrReplaceBrandGrpcResponse {
-    optional SettingsManagerBrandGrpcModel Brand = 1;
-    repeated SettingsManagerGrpcError Errors = 2;
-}
-
-
-
 message SettingsManagerInsertOrReplaceBrandSettingsGrpcResponse {
     optional SettingsManagerBrandSettingsGrpcModel BrandSettings = 1;
     repeated SettingsManagerGrpcError Errors = 2;
@@ -487,7 +475,6 @@ service SettingsManagerGrpcService{
 
     rpc InsertOrReplaceKeyValues(SettingsManagerKeyValuesGrpcModel) returns (SettingsManagerKeyValuesGrpcModelResponse);
 
-    rpc InsertOrReplaceBrand(SettingsManagerBrandGrpcModel) returns (InsertOrReplaceBrandGrpcResponse);
     rpc InsertOrReplaceBrandSettings(SettingsManagerBrandSettingsGrpcModel) returns (SettingsManagerInsertOrReplaceBrandSettingsGrpcResponse);
     
     rpc InsertOrReplaceAuthRules(SettingsManagerAuthRulesGrpcModel) returns (SettingsManagerAuthRulesGrpcModelResponse);
