@@ -8,6 +8,7 @@ enum AuthError{
     InvalidCredentials = 2;
     InvalidToken = 3;
     StaleToken = 4;
+    UserAlreadyInGroup = 5;
 }
 
 message AdminAuthRegisterUserGrpcRequest{
@@ -201,3 +202,10 @@ service AdminAuthService {
     rpc SetEnableUser(AdminAuthSetEnableUserGrpcRequest) returns (AdminAuthSetEnableUserGrpcResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
+
+
+foreach (var res in result)
+        {
+            res.totalOrder.ToString();
+            Console.WriteLine($" First name = {res.FirstName} Last name = {res.LastName} Amount = {string.Format(new CultureInfo("en-US", true), "{0:c0}", res.totalOrder)}");
+        }
