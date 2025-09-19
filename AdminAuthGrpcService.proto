@@ -93,12 +93,18 @@ message AdminAuthRemoveUserFromGroupGrpcRequest{
 
 message AdminAuthAddResourceToGroupGrpcRequest{
     string GroupName = 1;
-    string Resource = 2;
+    repeated string Resources = 2;
 }
 
 message AdminAuthRemoveResourceFromGroupGrpcRequest{
     string GroupName = 1;
-    string Resource = 2;
+    repeated string Resources = 2;
+}
+
+message AdminAuthUpdateGroupGrpcRequest{
+    string GroupName = 1;
+    optional string NewGroupName = 2;
+    optional string Description = 3;
 }
 
 message AdminAuthGetGroupsGrpcRequest{
@@ -190,6 +196,7 @@ service AdminAuthService {
     rpc RemoveUserFromGroup(AdminAuthRemoveUserFromGroupGrpcRequest) returns (AdminAuthGroupUsersGrpcResponse);
     rpc AddResourceToGroup(AdminAuthAddResourceToGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
     rpc RemoveResourceFromGroup(AdminAuthRemoveResourceFromGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
+    rpc UpdateGroup(AdminAuthUpdateGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
     rpc Register(AdminAuthRegisterUserGrpcRequest) returns (AdminAuthRegisterUserGrpcResponse);
     rpc AuthenticateGoogle(AdminAuthGoogleGrpcRequest) returns (AdminAuthGoogleGrpcResponse);
     rpc Refresh(AdminAuthRefreshGrpcRequest) returns (AdminAuthRefreshGrpcResponse);
