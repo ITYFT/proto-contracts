@@ -444,7 +444,6 @@ message SettingsManagerBrandSettingsGrpcModel{
     optional SettingsManagerBrandImageGrpcModel  DiscordIconImage = 69; 
 
     optional string Brand = 70;
-    optional string ManifestJson = 71;
 }
 
 message SettingsManagerInsertOrReplaceBrandSettingsGrpcResponse {
