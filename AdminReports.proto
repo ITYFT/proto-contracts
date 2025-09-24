@@ -1,0 +1,500 @@
+syntax = "proto3";
+
+package admin_reports;
+
+import "google/protobuf/empty.proto";
+
+// ----------------------------
+// Core enums & models
+// ----------------------------
+
+enum BalanceHistoryOperationType {
+  Trading = 0;
+  Deposit = 1;
+  Withdrawal = 2;
+  BalanceCorrection = 3;
+  Transfer = 4;
+  Commision = 5;
+  WithdrawalCancel = 6;
+}
+
+enum OrderStatus {
+  Active = 0;
+  Failed = 1;
+  Canceled = 2;
+  Executed = 3;
+}
+
+enum OrderType {
+  Market = 0;
+  Stop = 1;
+  Limit = 2;
+}
+
+enum ClosePositionReason {
+  Manual = 0;
+  Tp = 1;
+  Sl = 2;
+  So = 3;
+  AdminAction = 4;
+}
+
+message TradingEngineBidAskModel {
+  string AssetPair = 1;
+  double Bid = 2;
+  double Ask = 3;
+  int64 Date = 4;
+}
+
+message TradingEnginePositionSwapModel {
+  double Amount = 1;
+  int64 Date = 2;
+}
+
+message TradingEngineClosedPositionModel {
+  string Id = 1;
+  string TraderId = 2;
+  string AccountId = 3;
+  string AssetPair = 4;
+  string Collateral = 5;
+  double LotsAmount = 6;
+  bool IsBuy = 7;
+  bool IsAbook = 8;
+  optional double SlPrice = 9;
+  optional double TpPrice = 10;
+
+  map<string, string> Metadata = 11;
+  optional string OrderId = 12;
+
+  TradingEngineBidAskModel MarginBidask = 13;
+  TradingEngineBidAskModel OpenBidask = 14;
+  TradingEngineBidAskModel ProfitBidask = 15;
+  TradingEngineBidAskModel CloseBidask = 16;
+
+  ClosePositionReason CloseReason = 17;
+  double Commission = 18;
+  double Pl = 19;
+
+  repeated TradingEnginePositionSwapModel Swaps = 20;
+
+  int64 CreateDate = 21;
+  int64 CloseDate = 22;
+  string CreateProcessId = 23;
+  string CloseProcessId = 24;
+
+  optional double Volume = 25;
+  optional double ContractSize = 26;
+  optional double NetProfit = 27;
+  optional double NetPl = 29;
+  optional double PositionLeverage = 30;
+  optional double SwapsSum = 31;
+}
+
+message TradingEngineOrderPersistenceGrpcModel {
+  string Id = 1;
+  string TraderId = 2;
+  string AccountId = 3;
+  string AssetPair = 4;
+  string Collateral = 5;
+  double LotsAmount = 6;
+  bool IsBuy = 7;
+  bool IsAbook = 8;
+
+  optional double SlPrice = 9;
+  optional double TpPrice = 10;
+
+  map<string, string> Metadata = 11;
+
+  OrderType OrderType = 12;
+  OrderStatus PositionStatus = 13;
+
+  int64 CreateDate = 14;
+  int64 UpdateDate = 15;
+
+  string CreateProcessId = 16;
+  string UpdateProcessId = 17;
+
+  optional double DesiredPrice = 18;
+  optional string PositionId = 19;
+}
+
+message BalanceHistoryModel {
+  string TraderId = 1;
+  string AccountId = 2;
+  string Id = 3;
+  BalanceHistoryOperationType OperationType = 4;
+  optional string ProcessId = 5;
+  double Delta = 6;
+  int64 Date = 7;
+  optional string Comment = 8;
+  optional string ReferenceOperationId = 9;
+  double BalanceAfterOperation = 10;
+}
+
+message TradingEngineActivePositionModel {
+  string Id = 1;
+  string TraderId = 2;
+  string AccountId = 3;
+  string AssetPair = 4;
+  string Collateral = 5;
+  double LotsAmount = 6;
+  bool IsBuy = 7;
+  bool IsAbook = 8;
+  optional double SlPrice = 9;
+  optional double TpPrice = 10;
+
+  map<string, string> Metadata = 11;
+  optional string OrderId = 12;
+
+  TradingEngineBidAskModel MarginBidask = 13;
+  TradingEngineBidAskModel OpenBidask = 14;
+  TradingEngineBidAskModel ProfitBidask = 15;
+  TradingEngineBidAskModel ActiveBidask = 16;
+
+  double Commission = 17;
+  double Pl = 18;
+  repeated TradingEnginePositionSwapModel Swaps = 19;
+
+  int64 CreateDate = 20;
+  int64 UpdateDate = 21;
+  string CreateProcessId = 22;
+  string UpdateProcessId = 23;
+
+  optional double Volume = 25;
+  optional double ContractSize = 26;
+  optional double NetProfit = 27;
+  optional double NetPl = 29;
+  optional double PositionLeverage = 30;
+  optional double SwapsSum = 31;
+}
+
+message TradingEngineTradeModel {
+  string Id = 1;
+  string TraderId = 2;
+  string AccountId = 3;
+  string AssetPair = 4;
+  optional string OrderId = 5;
+  optional string PositionId = 6;
+  double Price = 7;
+  double Pl = 8;
+  double Fee = 9;
+  double LotsAmount = 10;
+  int64 CreateDate = 11;
+  string CreateProcessId = 12;
+  bool IsBuy = 13;
+}
+
+message AccountModel {
+  string Id = 1;
+  string TraderId = 2;
+  string Currency = 3;
+  double Balance = 4;
+  double Leverage = 5;
+  string TradingGroup = 6;
+  int64 CreateDate = 7;
+  int64 LastUpdateDate = 8;
+  string LastUpdateProcessId = 9;
+  map<string, string> Metadata = 10;
+  int32 Status = 11;
+  int32 HedgeMode = 12;
+  double Equity = 13;
+  double FreeMargin = 14;
+  double Margin = 15;
+  bool TradingDisabled = 16;
+  double MarginLevel = 17;
+}
+
+// ----------------------------
+// Pagination responses
+// ----------------------------
+
+message PagedActivePositionsResponse {
+  repeated TradingEngineActivePositionModel Items = 1;
+  int64 Total = 2;
+}
+
+message PagedTradesResponse {
+  repeated TradingEngineTradeModel Items = 1;
+  int64 Total = 2;
+}
+
+message PagedClosedPositionsResponse {
+  repeated TradingEngineClosedPositionModel Items = 1;
+  int64 Total = 2;
+}
+
+message PagedBalanceHistoryResponse {
+  repeated BalanceHistoryModel Items = 1;
+  int64 Total = 2;
+}
+
+message PagedOrdersResponse {
+  repeated TradingEngineOrderPersistenceGrpcModel Items = 1;
+  int64 Total = 2;
+}
+
+message PagedAccountsResponse {
+  repeated AccountModel Items = 1;
+  int64 Total = 2;
+}
+
+// ----------------------------
+// Basic requests
+// ----------------------------
+
+message GetHistoryPositionsRequest {
+  optional string TraderId = 1;
+  optional string AccountId = 2;
+  optional uint64 DateFrom = 3;
+  optional uint64 DateTo = 4;
+  uint64 Page = 5;
+  uint64 PageSize = 6;
+}
+
+message GetActivePositionsRequest {
+  optional string TraderId = 1;
+  optional string AccountId = 2;
+  optional uint64 DateFrom = 3;
+  optional uint64 DateTo = 4;
+  uint64 Page = 5;
+  uint64 PageSize = 6;
+}
+
+message GetBalanceHistoryRequest {
+  optional string TraderId = 1;
+  optional string AccountId = 2;
+  optional uint64 DateFrom = 3;
+  optional uint64 DateTo = 4;
+  repeated BalanceHistoryOperationType OperationTypes = 5;
+  uint64 Page = 6;
+  uint64 PageSize = 7;
+}
+
+message GetOrdersRequest {
+  optional string TraderId = 1;
+  optional string AccountId = 2;
+  optional uint64 DateFrom = 3;
+  optional uint64 DateTo = 4;
+  repeated OrderStatus OrderStatus = 5;
+  uint64 Page = 6;
+  uint64 PageSize = 7;
+}
+
+message GetAccountsRequest {
+  string QueryString = 1;
+  uint64 Page = 2;
+  uint64 PageSize = 3;
+}
+
+// ----------------------------
+// ADMIN QL section
+// ----------------------------
+
+enum TradingEngineFieldType {
+  String = 0;
+  Int = 1;
+  Float = 2;
+  Bool = 3;
+}
+
+message TradingEngineFieldCondition {
+  string operator = 1;
+  string value = 2;
+  TradingEngineFieldType value_type = 3;
+}
+
+message TradingEngineFieldFilter {
+  string field = 1;
+  repeated TradingEngineFieldCondition conditions = 2;
+}
+
+enum TradingEngineSortDirection {
+  Ascending = 0;
+  Descending = 1;
+}
+
+message TradingEngineSortField {
+  string field = 1;
+  TradingEngineSortDirection direction = 2;
+}
+
+message TradingEnginePaginatedFilterRequest {
+  repeated TradingEngineFieldFilter filters = 1;
+  optional int64 date_from = 2;
+  optional int64 date_to = 3;
+  int64 page = 4;
+  int64 page_size = 5;
+  optional TradingEngineSortField sort_by = 6;
+}
+
+enum AdminReportsErrorCode {
+  InvalidFilterField = 0;
+  InvalidSortField = 1;
+  InternalError = 2;
+}
+
+message AdminReportsError {
+  AdminReportsErrorCode code = 1;
+  string message = 2;
+}
+
+message PagedAccountsSuccess {
+  repeated AccountModel items = 1;
+  int64 total = 2;
+}
+
+message PagedAccountsResponseQl {
+  oneof result {
+    PagedAccountsSuccess success = 1;
+    AdminReportsError error = 2;
+  }
+}
+
+message PagedOrdersSuccess {
+  repeated TradingEngineOrderPersistenceGrpcModel items = 1;
+  int64 total = 2;
+}
+
+message PagedOrdersResponseQl {
+  oneof result {
+    PagedOrdersSuccess success = 1;
+    AdminReportsError error = 2;
+  }
+}
+
+message PagedBalanceHistorySuccess {
+  repeated BalanceHistoryModel items = 1;
+  int64 total = 2;
+}
+
+message PagedBalanceHistoryResponseQl {
+  oneof result {
+    PagedBalanceHistorySuccess success = 1;
+    AdminReportsError error = 2;
+  }
+}
+
+message PagedClosedPositionsSuccess {
+  repeated TradingEngineClosedPositionModel items = 1;
+  int64 total = 2;
+}
+
+message PagedClosedPositionsResponseQl {
+  oneof result {
+    PagedClosedPositionsSuccess success = 1;
+    AdminReportsError error = 2;
+  }
+}
+
+message PagedActivePositionsSuccess {
+  repeated TradingEngineActivePositionModel items = 1;
+  int64 total = 2;
+}
+
+message PagedActivePositionsResponseQl {
+  oneof result {
+    PagedActivePositionsSuccess success = 1;
+    AdminReportsError error = 2;
+  }
+}
+
+message PagedTradesSuccess {
+  repeated TradingEngineTradeModel items = 1;
+  int64 total = 2;
+}
+
+message PagedTradesResponseQl {
+  oneof result {
+    PagedTradesSuccess success = 1;
+    AdminReportsError error = 2;
+  }
+}
+
+// ----------------------------
+// Dashboard section (requests & responses)
+// ----------------------------
+
+enum TimeFrame {
+  TIME_FRAME_UNSPECIFIED = 0;
+  MINUTE = 1;
+  HOUR = 2;
+  DAY = 3;
+  WEEK = 4;
+  MONTH = 5;
+}
+
+message AccountsDashboardRequest {
+  TimeFrame Frame = 1;
+  int64 From = 2;
+  int64 To = 3;
+}
+
+message GroupByOpenPositionDashboardRequest {
+  TimeFrame Frame = 1;
+  int64 From = 2;
+  int64 To = 3;
+}
+
+message GroupByClosePositionDashboardRequest {
+  TimeFrame Frame = 1;
+  int64 From = 2;
+  int64 To = 3;
+}
+
+message OrdersDashboardRequest {
+  TimeFrame Frame = 1;
+  int64 From = 2;
+  int64 To = 3;
+}
+
+message ClientsDashboardRequest {
+  TimeFrame Frame = 1;
+  int64 From = 2;
+  int64 To = 3;
+}
+
+message TradersDashboardRequest {
+  TimeFrame Frame = 1;
+  int64 From = 2;
+  int64 To = 3;
+}
+
+message DashboardPoint {
+  int64 Period = 1;
+  int64 Count = 2;
+}
+
+message DashboardResponse {
+  int64 TotalCount = 1;
+  repeated DashboardPoint Points = 2;
+}
+
+// ----------------------------
+// Single service with ALL methods
+// ----------------------------
+
+service AdminReportsService {
+  // Core report endpoints
+  rpc GetAllAccounts(GetAccountsRequest) returns (PagedAccountsResponse);
+  rpc GetAllHistoryPositions(GetHistoryPositionsRequest) returns (PagedClosedPositionsResponse);
+  rpc GetActivePositions(GetActivePositionsRequest) returns (PagedActivePositionsResponse);
+  rpc GetBalanceHistory(GetBalanceHistoryRequest) returns (PagedBalanceHistoryResponse);
+  rpc GetOrders(GetOrdersRequest) returns (PagedOrdersResponse);
+  rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+
+  // ADMIN QL streaming endpoints
+  rpc GetAllAccountsQl(TradingEnginePaginatedFilterRequest) returns (stream PagedAccountsResponseQl);
+  rpc GetOrdersQl(TradingEnginePaginatedFilterRequest) returns (stream PagedOrdersResponseQl);
+  rpc GetBalanceHistoryQl(TradingEnginePaginatedFilterRequest) returns (stream PagedBalanceHistoryResponseQl);
+  rpc GetClosedPositionsQl(TradingEnginePaginatedFilterRequest) returns (stream PagedClosedPositionsResponseQl);
+  rpc GetActivePositionsQl(TradingEnginePaginatedFilterRequest) returns (stream PagedActivePositionsResponseQl);
+  rpc GetTradesQl(TradingEnginePaginatedFilterRequest) returns (stream PagedTradesResponseQl);
+
+  // Dashboard endpoints
+  rpc AccountsDashboard(AccountsDashboardRequest) returns (DashboardResponse);
+  rpc GroupByOpenPositionDashboard(GroupByOpenPositionDashboardRequest) returns (DashboardResponse);
+  rpc GroupByClosePositionDashboard(GroupByClosePositionDashboardRequest) returns (DashboardResponse);
+  rpc OrdersDashboard(OrdersDashboardRequest) returns (DashboardResponse);
+  rpc ClientsDashboard(ClientsDashboardRequest) returns (DashboardResponse);
+  rpc TradersDashboard(TradersDashboardRequest) returns (DashboardResponse);
+}
