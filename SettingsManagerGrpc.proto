@@ -475,6 +475,6 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceDefaultTradingGroup(SettingsManagerDefaultTradingGroup) returns (SettingsManagerDefaultTradingGroupGrpcModelResponse);
     rpc InsertOrReplaceAssetImages(SettingsManagerInsertOrReplaceAssetImagesGrpcRequest) returns (stream SettingsManagerAssetImageResult);
     rpc InsertOrReplaceDefaultAssetImage(SettingsManagerDefaultAssetImage) returns (SettingsManagerDefaultAssetImageGrpcModelResponse);
-    rpc GetAssetImages(SettingsManagerGetAssetImagesGrpcRequest) returns (stream SettingsManagerAssetImageResult);
+    rpc GetAssetImages(SettingsManagerGetAssetImagesGrpcRequest) returns (stream SettingsManagerAssetImageGrpcModel);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
