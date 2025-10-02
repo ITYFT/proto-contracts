@@ -1,6 +1,8 @@
 syntax = "proto3";
 package admin_reports;
 
+import "google/protobuf/empty.proto";
+
 enum BalanceHistoryOperationType {
   Trading = 0;
   Deposit = 1;
@@ -321,4 +323,6 @@ service AdminReportsService {
   rpc GetTradesQl(ReportsPaginatedFilterRequest) returns ( PagedTradesReportsGrpcResponse);
 
   rpc GetDashboardData(GetDashboardDataGrpcRequest) returns (DashboardReportsGrpcResponse);
+
+  rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
