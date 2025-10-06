@@ -335,12 +335,12 @@ message SettingsManagerDefaultTradingGroupGrpcModelResponse {
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
-message SettingsManagerInsertOrReplaceAssetImagesGrpcRequest {
-  repeated SettingsManagerAssetImageGrpcModel Items = 1;
-}
-
 message SettingsManagerGetAssetImagesGrpcRequest {
   repeated string AssetIds = 1;
+}
+
+message SettingsManagerInsertOrReplaceAssetImagesGrpcRequest {
+  repeated SettingsManagerAssetImageGrpcModel Items = 1;
 }
 
 message SettingsManagerAssetImageResult {
@@ -354,10 +354,6 @@ message SettingsManagerAssetImageGrpcModel {
 }
 
 message SettingsManagerInsertOrReplaceAssetImagesGrpcResponse {
-  repeated SettingsManagerAssetImageResult Results = 1;
-}
-
-message SettingsManagerGetAssetImagesGrpcResponse {
   repeated SettingsManagerAssetImageResult Results = 1;
 }
 
@@ -493,9 +489,9 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceBrandSettings(SettingsManagerBrandSettingsGrpcModel) returns (SettingsManagerInsertOrReplaceBrandSettingsGrpcResponse);
     
     rpc InsertOrReplaceAuthRules(SettingsManagerAuthRulesGrpcModel) returns (SettingsManagerAuthRulesGrpcModelResponse);
-    rpc InsertOrReplaceAssetImages(SettingsManagerInsertOrReplaceAssetImagesGrpcRequest) returns (SettingsManagerInsertOrReplaceAssetImagesGrpcResponse);
+    rpc InsertOrReplaceAssetImages(SettingsManagerInsertOrReplaceAssetImagesGrpcRequest) returns (stream SettingsManagerAssetImageResult);
     rpc InsertOrReplaceDefaultAssetImage(SettingsManagerDefaultAssetImage) returns (SettingsManagerDefaultAssetImageGrpcModelResponse);
-    rpc GetAssetImages(SettingsManagerGetAssetImagesGrpcRequest) returns (SettingsManagerGetAssetImagesGrpcResponse);
+    rpc GetAssetImages(SettingsManagerGetAssetImagesGrpcRequest) returns (stream SettingsManagerAssetImageGrpcModel);
     
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
