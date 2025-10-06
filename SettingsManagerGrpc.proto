@@ -447,6 +447,7 @@ message SettingsManagerBrandSettingsGrpcModel{
     optional string ManifestJson = 71;
 
     optional string YftBrandingUrl = 72;
+    optional string TelegramApiKey = 73;
 }
 
 message SettingsManagerBrandGrpcModel{
