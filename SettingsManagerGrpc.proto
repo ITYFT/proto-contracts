@@ -446,7 +446,7 @@ message SettingsManagerBrandSettingsGrpcModel{
     optional string Brand = 70;
     optional string ManifestJson = 71;
 
-    optional YftBrandingUrl = 72;
+    optional string YftBrandingUrl = 72;
 }
 
 message SettingsManagerBrandGrpcModel{
