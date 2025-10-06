@@ -160,6 +160,14 @@ message AdminAuthUserGrpcModel{
     repeated AdminAuthResourceGrpcModel Resources = 3;
     bool IsSuperAdmin = 4;
     bool IsEnabled = 5;
+    optional string FirstName = 6;
+    optional string LastName = 7;
+}
+
+message AdminAuthUserGrpcUpdateModel{
+    string Login = 1;
+    string FirstName = 2;
+    string LastName = 3;
 }
 
 message AdminAuthGetUsersGrpcRequest{
@@ -197,6 +205,7 @@ service AdminAuthService {
     rpc AddResourceToGroup(AdminAuthAddResourceToGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
     rpc RemoveResourceFromGroup(AdminAuthRemoveResourceFromGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
     rpc UpdateGroup(AdminAuthUpdateGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
+    rpc UpdateUserInfo(AdminAuthUserGrpcUpdateModel) returns (AdminAuthUserGrpcModel);
     rpc Register(AdminAuthRegisterUserGrpcRequest) returns (AdminAuthRegisterUserGrpcResponse);
     rpc AuthenticateGoogle(AdminAuthGoogleGrpcRequest) returns (AdminAuthGoogleGrpcResponse);
     rpc Refresh(AdminAuthRefreshGrpcRequest) returns (AdminAuthRefreshGrpcResponse);
