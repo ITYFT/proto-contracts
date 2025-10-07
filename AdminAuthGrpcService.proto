@@ -14,6 +14,8 @@ enum AuthError{
 message AdminAuthRegisterUserGrpcRequest{
     string Login = 1;
     string Password = 2;
+    bool EnableUser = 3;
+    bool SuperAdminUser = 4;
 }
 
 message AdminAuthRegisterUserGrpcResponse{
