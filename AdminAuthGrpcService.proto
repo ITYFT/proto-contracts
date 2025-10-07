@@ -16,6 +16,8 @@ message AdminAuthRegisterUserGrpcRequest{
     string Password = 2;
     bool EnableUser = 3;
     bool SuperAdminUser = 4;
+    optional string FirstName = 5;
+    optional string LastName = 6;
 }
 
 message AdminAuthRegisterUserGrpcResponse{
