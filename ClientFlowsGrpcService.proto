@@ -1,0 +1,63 @@
+
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package client_flows;
+
+enum ClientFlowsPersonalDataGenderGrpc{
+    Male = 0;
+    Female = 1;
+    Other = 2;
+}
+
+message ClientFlowsPersonalDataGrpcModel {
+  string Id = 1;
+  string FirstName = 2;
+  string LastName = 3;
+  ClientFlowsPersonalDataGenderGrpc Sex = 4;
+  string Email = 5;
+  string DateOfBirth = 6;
+  string PhoneNumberMobile = 7;
+  string PhoneNumberHome = 8;
+  string CountryOfResidence = 9;
+  string Nationality = 10;
+  repeated string AdditionalNationalities = 11;
+  optional string UsTaxCode = 12;
+  string StreetAddress = 13;
+  string PostalCode = 14;
+  string City = 15;
+  uint64 CreateDate = 16;
+  uint64 LastUpdateDate = 17;
+}
+
+message GetClientLoginsGrpcRequest{
+    string ClientId = 1;
+    uint64 DateFrom = 2;
+    uint64 DateTo = 3;
+}
+
+message ClientLoginGrpcModel{
+    string Id = 1;
+    uint64 Date = 2;
+    string IpAddress = 3;
+    optional string Brand = 4;
+    map<string, string> Headers = 5;
+}
+
+message GetClientsGrpcRequest{
+    uint64 DateFrom = 1;
+    uint64 DateTo = 2;
+}
+
+message ClientGrpcModel{
+    string Id = 1;
+    optional ClientFlowsPersonalDataGrpcModel PersonalData = 2;
+    map<string, string> MarketingSources = 3;
+}
+
+service PersonalDataGrpcService {
+    rpc GetAllPersonalData(google.protobuf.Empty) returns (stream ClientFlowsPersonalDataGrpcModel);
+    rpc InsertOrUpdatePersonalData(ClientFlowsPersonalDataGrpcModel) returns (ClientFlowsPersonalDataGrpcModel);
+    rpc GetClientLogins(GetClientLoginsGrpcRequest) returns (stream GetClientLoginsGrpcRequest);
+    rpc GetClients(GetClientsGrpcRequest) returns (stream ClientGrpcModel);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
