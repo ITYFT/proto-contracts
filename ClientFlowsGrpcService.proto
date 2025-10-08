@@ -54,7 +54,7 @@ message ClientGrpcModel{
     map<string, string> MarketingSources = 3;
 }
 
-service PersonalDataGrpcService {
+service ClientFlowsGrpcService {
     rpc GetAllPersonalData(google.protobuf.Empty) returns (stream ClientFlowsPersonalDataGrpcModel);
     rpc InsertOrUpdatePersonalData(ClientFlowsPersonalDataGrpcModel) returns (ClientFlowsPersonalDataGrpcModel);
     rpc GetClientLogins(GetClientLoginsGrpcRequest) returns (stream GetClientLoginsGrpcRequest);
