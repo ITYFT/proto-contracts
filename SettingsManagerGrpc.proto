@@ -520,7 +520,7 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceDefaultAssetImage(SettingsManagerDefaultAssetImage) returns (SettingsManagerDefaultAssetImageGrpcModelResponse);
     rpc GetAssetImages(SettingsManagerGetAssetImagesGrpcRequest) returns (stream SettingsManagerAssetImageGrpcModel);
 
-    rpc InsertOrReplaceSecretKey(SettingsManagerSecretKeysGrpcModel) returns (SettingsManagerSecretKeysGrpcModel);
+    rpc InsertOrReplaceSecretKey(SettingsManagerSecretKeysGrpcModel) returns (InsertOrReplaceSecretKeyGrpcResponse);
     
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
