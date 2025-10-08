@@ -462,11 +462,24 @@ message InsertOrReplaceBrandGrpcResponse {
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
-
-
 message SettingsManagerInsertOrReplaceBrandSettingsGrpcResponse {
     optional SettingsManagerBrandSettingsGrpcModel BrandSettings = 1;
     repeated SettingsManagerGrpcError Errors = 2;
+}
+
+enum SettingsManagerSecretKeysService{
+    YftIntegrationSocket = 0;
+    YftIntegrationApi = 1;
+    YftManagerApi = 2;
+}
+
+message SettingsManagerSecretKeysGrpcModel{
+    string Id = 1;
+    string Name = 2;
+    string Secret = 3;
+    SettingsManagerSecretKeysService Service = 4;
+    string Brand = 5;
+    bool WriteAccess = 6;
 }
 
 service SettingsManagerGrpcService{
@@ -499,6 +512,8 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceAssetImages(SettingsManagerInsertOrReplaceAssetImagesGrpcRequest) returns (stream SettingsManagerAssetImageResult);
     rpc InsertOrReplaceDefaultAssetImage(SettingsManagerDefaultAssetImage) returns (SettingsManagerDefaultAssetImageGrpcModelResponse);
     rpc GetAssetImages(SettingsManagerGetAssetImagesGrpcRequest) returns (stream SettingsManagerAssetImageGrpcModel);
+
+    rpc InsertOrReplaceSecretKey(SettingsManagerSecretKeysGrpcModel) returns (SettingsManagerSecretKeysGrpcModel);
     
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
