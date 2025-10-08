@@ -18,6 +18,7 @@ message AdminAuthRegisterUserGrpcRequest{
     bool SuperAdminUser = 4;
     optional string FirstName = 5;
     optional string LastName = 6;
+    optional string GroupName = 7;
 }
 
 message AdminAuthRegisterUserGrpcResponse{
@@ -172,6 +173,9 @@ message AdminAuthUserGrpcUpdateModel{
     string Login = 1;
     string FirstName = 2;
     string LastName = 3;
+    bool Enabled = 4;
+    bool IsSuperAdmin = 5;
+    optional string GroupName = 6;
 }
 
 message AdminAuthGetUsersGrpcRequest{
