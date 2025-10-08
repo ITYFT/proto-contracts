@@ -449,7 +449,10 @@ message SettingsManagerBrandSettingsGrpcModel{
 message SettingsManagerBrandGrpcModel{
     string Name = 1;
     string PlatformHost = 2;
+    string GroupsGlobPattern = 3;
+    string BrandDefaultTradingGroup = 4;
 }
+
 
 message InsertOrReplaceBrandGrpcResponse {
     optional SettingsManagerBrandGrpcModel Brand = 1;
