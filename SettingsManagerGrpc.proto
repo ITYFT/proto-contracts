@@ -479,7 +479,7 @@ message SettingsManagerSecretKeysGrpcModel{
     string Name = 2;
     string Secret = 3;
     SettingsManagerSecretKeysService Service = 4;
-    string Brand = 5;
+    optional string Brand = 5;
     bool WriteAccess = 6;
 }
 
