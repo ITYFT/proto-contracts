@@ -22,6 +22,7 @@ enum SettingsManagerGrpcErrorCode {
     TradingGroupNotFound = 16;
     GroupNotMatchedWithGlob = 17;
     InvalidGlobPattern = 18;
+    BrandNotFound = 19;
 }
 
 
