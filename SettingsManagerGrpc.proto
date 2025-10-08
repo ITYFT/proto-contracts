@@ -19,6 +19,9 @@ enum SettingsManagerGrpcErrorCode {
     LocalizationErrors = 13;
     ImageErrors = 14;
     MdeLiquidityProfileNotFound = 15;
+    TradingGroupNotFound = 16;
+    GroupNotMatchedWithGlob = 17;
+    InvalidGlobPattern = 18;
 }
 
 
