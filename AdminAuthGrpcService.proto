@@ -86,24 +86,22 @@ message AdminAuthGoogleGrpcResponse{
     optional string RefreshToken = 3;
 }
 
-message AdminAuthAddUserToGroupGrpcRequest{
+message AdminAuthInsertOrRemoveUserFromTheGroupGrpcRequest{
     string UserLogin = 1;
     string GroupName = 2;
 }
 
-message AdminAuthRemoveUserFromGroupGrpcRequest{
-    string UserLogin = 1;
-    string GroupName = 2;
-}
-
-message AdminAuthAddResourceToGroupGrpcRequest{
+message AdminAuthInsertOrRemoveResourceFromTheGroupGrpcRequest{
     string GroupName = 1;
     repeated string Resources = 2;
 }
 
-message AdminAuthRemoveResourceFromGroupGrpcRequest{
+message AdminAuthDeleteUserGrpcRequest{
+    string Login = 1;
+}
+
+message AdminAuthDeleteGroupGrpcRequest{
     string GroupName = 1;
-    repeated string Resources = 2;
 }
 
 message AdminAuthUpdateGroupGrpcRequest{
@@ -208,10 +206,10 @@ service AdminAuthService {
     rpc GetResources(AdminAuthGetResourcesGrpcRequest) returns (AdminAuthGetResourcesGrpcResponse);
     rpc GetUsers(AdminAuthGetUsersGrpcRequest) returns (AdminAuthGetUsersGrpcResponse);
     rpc GetGroups(AdminAuthGetGroupsGrpcRequest) returns (AdminAuthGetGroupsGrpcResponse);
-    rpc AddUserToGroup(AdminAuthAddUserToGroupGrpcRequest) returns (AdminAuthGroupUsersGrpcResponse);
-    rpc RemoveUserFromGroup(AdminAuthRemoveUserFromGroupGrpcRequest) returns (AdminAuthGroupUsersGrpcResponse);
-    rpc AddResourceToGroup(AdminAuthAddResourceToGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
-    rpc RemoveResourceFromGroup(AdminAuthRemoveResourceFromGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
+    rpc InsertOrRemoveUserFromTheGroup(AdminAuthInsertOrRemoveUserFromTheGroupGrpcRequest) returns (AdminAuthGroupUsersGrpcResponse);
+    rpc InsertOrRemoveResourceFromTheGroup(AdminAuthInsertOrRemoveResourceFromTheGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
+    rpc DeleteUser(AdminAuthDeleteUserGrpcRequest) returns (google.protobuf.Empty);
+    rpc DeleteGroup(AdminAuthDeleteGroupGrpcRequest) returns (google.protobuf.Empty);
     rpc UpdateGroup(AdminAuthUpdateGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
     rpc UpdateUserInfo(AdminAuthUserGrpcUpdateModel) returns (AdminAuthUserGrpcModel);
     rpc Register(AdminAuthRegisterUserGrpcRequest) returns (AdminAuthRegisterUserGrpcResponse);
