@@ -202,14 +202,22 @@ message AdminAuthSetEnableUserGrpcResponse{
     optional bool IsEnabled = 2;
 }
 
+message AdminAuthDeleteUserGrpcResponse{
+    optional AdminAuthUserGrpcModel User = 1;
+}
+
+message AdminAuthDeleteGroupGrpcResponse{
+    optional AdminAuthGroupGrpcModel Group = 1;
+}
+
 service AdminAuthService {
     rpc GetResources(AdminAuthGetResourcesGrpcRequest) returns (AdminAuthGetResourcesGrpcResponse);
     rpc GetUsers(AdminAuthGetUsersGrpcRequest) returns (AdminAuthGetUsersGrpcResponse);
     rpc GetGroups(AdminAuthGetGroupsGrpcRequest) returns (AdminAuthGetGroupsGrpcResponse);
     rpc InsertOrRemoveUserFromTheGroup(AdminAuthInsertOrRemoveUserFromTheGroupGrpcRequest) returns (AdminAuthGroupUsersGrpcResponse);
     rpc InsertOrRemoveResourceFromTheGroup(AdminAuthInsertOrRemoveResourceFromTheGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
-    rpc DeleteUser(AdminAuthDeleteUserGrpcRequest) returns (google.protobuf.Empty);
-    rpc DeleteGroup(AdminAuthDeleteGroupGrpcRequest) returns (google.protobuf.Empty);
+    rpc DeleteUser(AdminAuthDeleteUserGrpcRequest) returns (AdminAuthDeleteUserGrpcResponse);
+    rpc DeleteGroup(AdminAuthDeleteGroupGrpcRequest) returns (AdminAuthDeleteGroupGrpcResponse);
     rpc UpdateGroup(AdminAuthUpdateGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
     rpc UpdateUserInfo(AdminAuthUserGrpcUpdateModel) returns (AdminAuthUserGrpcModel);
     rpc Register(AdminAuthRegisterUserGrpcRequest) returns (AdminAuthRegisterUserGrpcResponse);
