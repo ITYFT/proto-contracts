@@ -19,6 +19,10 @@ enum SettingsManagerGrpcErrorCode {
     LocalizationErrors = 13;
     ImageErrors = 14;
     MdeLiquidityProfileNotFound = 15;
+    TradingGroupNotFound = 16;
+    GroupNotMatchedWithGlob = 17;
+    InvalidGlobPattern = 18;
+    BrandNotFound = 19;
 }
 
 
@@ -449,19 +453,41 @@ message SettingsManagerBrandSettingsGrpcModel{
 message SettingsManagerBrandGrpcModel{
     string Name = 1;
     string PlatformHost = 2;
+    string GroupsGlobPattern = 3;
+    string BrandDefaultTradingGroup = 4;
 }
+
 
 message InsertOrReplaceBrandGrpcResponse {
     optional SettingsManagerBrandGrpcModel Brand = 1;
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
-
-
 message SettingsManagerInsertOrReplaceBrandSettingsGrpcResponse {
     optional SettingsManagerBrandSettingsGrpcModel BrandSettings = 1;
     repeated SettingsManagerGrpcError Errors = 2;
 }
+
+enum SettingsManagerSecretKeysService{
+    YftIntegrationSocket = 0;
+    YftIntegrationApi = 1;
+    YftManagerApi = 2;
+}
+
+message SettingsManagerSecretKeysGrpcModel{
+    string Id = 1;
+    string Name = 2;
+    string Secret = 3;
+    SettingsManagerSecretKeysService Service = 4;
+    optional string Brand = 5;
+    bool WriteAccess = 6;
+}
+
+message InsertOrReplaceSecretKeyGrpcResponse {
+    optional SettingsManagerSecretKeysGrpcModel SecretKey = 1;
+    repeated SettingsManagerGrpcError Errors = 2;
+}
+
 
 service SettingsManagerGrpcService{
     rpc InsertOrReplaceCollateral(SettingsManagerCollateralGrpcModel) returns (SettingsManagerInsertOrReplaceCollateralGrpcResponse);
@@ -493,6 +519,8 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceAssetImages(SettingsManagerInsertOrReplaceAssetImagesGrpcRequest) returns (stream SettingsManagerAssetImageResult);
     rpc InsertOrReplaceDefaultAssetImage(SettingsManagerDefaultAssetImage) returns (SettingsManagerDefaultAssetImageGrpcModelResponse);
     rpc GetAssetImages(SettingsManagerGetAssetImagesGrpcRequest) returns (stream SettingsManagerAssetImageGrpcModel);
+
+    rpc InsertOrReplaceSecretKey(SettingsManagerSecretKeysGrpcModel) returns (InsertOrReplaceSecretKeyGrpcResponse);
     
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
