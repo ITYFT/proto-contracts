@@ -67,13 +67,15 @@ message AdminAuthValidateJwtResponse{
     optional AuthError Error = 1;
 }
 
-message AdminAuthCreateGroupGrpcRequest{
-    string Name = 1;
-    string Description = 2;
-}
-
 message AdminAuthCreateGroupGrpcResponse{
     optional string GroupId = 1;
+    optional string GroupName = 2;
+    optional string Description = 3;
+}
+
+message InsertOrReplaceGroupGrpcRequest{
+    string Name = 1;
+    string Description = 2;
 }
 
 message AdminAuthGoogleGrpcRequest{
@@ -102,12 +104,6 @@ message AdminAuthDeleteUserGrpcRequest{
 
 message AdminAuthDeleteGroupGrpcRequest{
     string GroupName = 1;
-}
-
-message AdminAuthUpdateGroupGrpcRequest{
-    string GroupName = 1;
-    optional string NewGroupName = 2;
-    optional string Description = 3;
 }
 
 message AdminAuthGetGroupsGrpcRequest{
@@ -218,14 +214,13 @@ service AdminAuthService {
     rpc InsertOrRemoveResourceFromTheGroup(AdminAuthInsertOrRemoveResourceFromTheGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
     rpc DeleteUser(AdminAuthDeleteUserGrpcRequest) returns (AdminAuthDeleteUserGrpcResponse);
     rpc DeleteGroup(AdminAuthDeleteGroupGrpcRequest) returns (AdminAuthDeleteGroupGrpcResponse);
-    rpc UpdateGroup(AdminAuthUpdateGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
+    rpc InserOrReplaceGroup(InsertOrReplaceGroupGrpcRequest) returns (AdminAuthCreateGroupGrpcResponse);
     rpc UpdateUserInfo(AdminAuthUserGrpcUpdateModel) returns (AdminAuthUserGrpcModel);
     rpc Register(AdminAuthRegisterUserGrpcRequest) returns (AdminAuthRegisterUserGrpcResponse);
     rpc AuthenticateGoogle(AdminAuthGoogleGrpcRequest) returns (AdminAuthGoogleGrpcResponse);
     rpc Refresh(AdminAuthRefreshGrpcRequest) returns (AdminAuthRefreshGrpcResponse);
     rpc UpdatePassword(AdminAuthUpdatePasswordGrpcRequest) returns (AdminAuthUpdatePasswordGrpcResponse);
     rpc Authenticate(AdminAuthenticateGrpcRequest) returns (AdminAuthenticateGrpcResponse);
-    rpc CreateGroup(AdminAuthCreateGroupGrpcRequest) returns (AdminAuthCreateGroupGrpcResponse);
     rpc CreateResource(AdminAuthCreateResourceGrpcRequest) returns (AdminAuthCreateResourceGrpcResponse);
     rpc Validate(AdminAuthValidateJwtRequest) returns (AdminAuthValidateJwtResponse);
     rpc SetSuperUser(AdminAuthSetSuperUserGrpcRequest) returns (AdminAuthSetSuperUserGrpcResponse);
