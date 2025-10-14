@@ -214,7 +214,7 @@ service AdminAuthService {
     rpc InsertOrRemoveResourceFromTheGroup(AdminAuthInsertOrRemoveResourceFromTheGroupGrpcRequest) returns (AdminAuthGroupGrpcResponse);
     rpc DeleteUser(AdminAuthDeleteUserGrpcRequest) returns (AdminAuthDeleteUserGrpcResponse);
     rpc DeleteGroup(AdminAuthDeleteGroupGrpcRequest) returns (AdminAuthDeleteGroupGrpcResponse);
-    rpc InserOrReplaceGroup(InsertOrReplaceGroupGrpcRequest) returns (AdminAuthCreateGroupGrpcResponse);
+    rpc InsertOrReplaceGroup(InsertOrReplaceGroupGrpcRequest) returns (AdminAuthCreateGroupGrpcResponse);
     rpc UpdateUserInfo(AdminAuthUserGrpcUpdateModel) returns (AdminAuthUserGrpcModel);
     rpc Register(AdminAuthRegisterUserGrpcRequest) returns (AdminAuthRegisterUserGrpcResponse);
     rpc AuthenticateGoogle(AdminAuthGoogleGrpcRequest) returns (AdminAuthGoogleGrpcResponse);
