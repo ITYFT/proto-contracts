@@ -178,6 +178,14 @@ message SettingsManagerInsertOrReplaceInstrumentGrpcResponse {
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
+message SettingsManagerInsertOrReplaceInstrumentsGrpcRequest {
+    repeated SettingsManagerInstrumentGrpcModel Instruments = 1;
+}
+
+message SettingsManagerInsertOrReplaceInstrumentsGrpcResponse {
+    repeated SettingsManagerInsertOrReplaceInstrumentGrpcResponse Results = 1;
+}
+
 message SettingsManagerTradingProfileInstrumentGrpcModel {
     string Id = 1;
     double MinOperationVolume = 2;
@@ -500,7 +508,7 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceSwapProfile(SettingsManagerSwapProfileGrpcModel) returns (SettingsManagerInsertOrReplaceSwapProfileGrpcResponse);
     rpc InsertOrReplaceSwapSchedule(SettingsManagerSwapScheduleGrpcModel) returns (SettingsManagerInsertOrReplaceSwapScheduleGrpcResponse);
     rpc InsertOrReplaceTradingGroup(SettingsManagerTradingGroupGrpcModel) returns (SettingsManagerInsertOrReplaceTradingGroupGrpcResponse);
-    rpc InsertOrReplaceInstrument(SettingsManagerInstrumentGrpcModel) returns (SettingsManagerInsertOrReplaceInstrumentGrpcResponse);
+    rpc InsertOrReplaceInstrument(SettingsManagerInsertOrReplaceInstrumentsGrpcRequest) returns (SettingsManagerInsertOrReplaceInstrumentsGrpcResponse);
     rpc InsertOrReplaceTradingProfile(SettingsManagerTradingProfileGrpcModel) returns (SettingsManagerInsertOrReplaceTradingProfileGrpcResponse);
     rpc InsertOrReplaceMdeProfile(SettingsManagerMdeProfileGrpcModel) returns (SettingsManagerMdeProfileGrpcModelResponse);
 
