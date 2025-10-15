@@ -301,6 +301,7 @@ message GetDashboardDataGrpcRequest {
   int64 From = 2;
   int64 To = 3;
   DashboardType Type = 4;
+  string GroupsGlobPattern = 5;
 }
 
 message DashboardPoint {
