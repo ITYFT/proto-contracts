@@ -76,6 +76,7 @@ message AdminAuthCreateGroupGrpcResponse{
 message InsertOrReplaceGroupGrpcRequest{
     string Name = 1;
     string Description = 2;
+    string Brand = 3;
 }
 
 message AdminAuthGoogleGrpcRequest{
@@ -116,6 +117,7 @@ message AdminAuthGroupGrpcModel{
     string Name = 2;
     optional string Description = 3;
     repeated AdminAuthResourceGrpcModel Resources = 4;
+    string Brand = 5;
 }
 
 message AdminAuthGetGroupsGrpcResponse{
