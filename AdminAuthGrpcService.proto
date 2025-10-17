@@ -47,6 +47,13 @@ message AdminAuthenticateGrpcResponse{
     optional AuthError Error = 1;
     optional string AuthToken = 2;
     optional string RefreshToken = 3;
+    optional string Brand = 4;
+    repeated AdminAuthAuthenticateResourceGrpcModel Resources = 5;
+}
+
+message AdminAuthAuthenticateResourceGrpcModel{
+    string Resource = 1;
+    optional string Description = 2;
 }
 
 message AdminAuthRefreshGrpcRequest{
