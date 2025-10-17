@@ -48,7 +48,8 @@ message AdminAuthenticateGrpcResponse{
     optional string AuthToken = 2;
     optional string RefreshToken = 3;
     optional string Brand = 4;
-    repeated AdminAuthAuthenticateResourceGrpcModel Resources = 5;
+    bool IsSuperAdmin = 5;
+    repeated AdminAuthAuthenticateResourceGrpcModel Resources = 6;
 }
 
 message AdminAuthAuthenticateResourceGrpcModel{
@@ -95,7 +96,9 @@ message AdminAuthGoogleGrpcResponse{
     optional string AuthToken = 2;
     optional string RefreshToken = 3;
     optional string Brand = 4;
-    repeated AdminAuthAuthenticateResourceGrpcModel Resources = 5;
+    bool IsSuperAdmin = 5;
+    repeated AdminAuthAuthenticateResourceGrpcModel Resources = 6;
+    
 }
 
 message AdminAuthInsertOrRemoveUserFromTheGroupGrpcRequest{
