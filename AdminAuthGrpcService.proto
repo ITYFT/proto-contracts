@@ -11,6 +11,7 @@ enum AuthError{
     UserAlreadyInGroup = 5;
     BrandNotFound = 6;
     GroupNotFound = 7;
+    Internal = 8;
 }
 
 message AdminAuthRegisterUserGrpcRequest{
