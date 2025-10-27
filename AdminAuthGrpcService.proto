@@ -10,6 +10,7 @@ enum AuthError{
     StaleToken = 4;
     UserAlreadyInGroup = 5;
     BrandNotFound = 6;
+    GroupNotFound = 7;
 }
 
 message AdminAuthRegisterUserGrpcRequest{
