@@ -240,6 +240,7 @@ message ReportsPaginatedFilterRequest {
   int64 page = 4;
   int64 page_size = 5;
   optional TradingEngineSortField sort_by = 6;
+  string GroupsGlobPattern = 7;
 }
 
 
