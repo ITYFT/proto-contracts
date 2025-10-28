@@ -508,7 +508,7 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceSwapProfile(SettingsManagerSwapProfileGrpcModel) returns (SettingsManagerInsertOrReplaceSwapProfileGrpcResponse);
     rpc InsertOrReplaceSwapSchedule(SettingsManagerSwapScheduleGrpcModel) returns (SettingsManagerInsertOrReplaceSwapScheduleGrpcResponse);
     rpc InsertOrReplaceTradingGroup(SettingsManagerTradingGroupGrpcModel) returns (SettingsManagerInsertOrReplaceTradingGroupGrpcResponse);
-    rpc InsertOrReplaceInstrument(stream SettingsManagerInsertOrReplaceInstrumentsGrpcRequest) returns (SettingsManagerInsertOrReplaceInstrumentsGrpcResponse);
+    rpc InsertOrReplaceInstrument(SettingsManagerInsertOrReplaceInstrumentsGrpcRequest) returns (SettingsManagerInsertOrReplaceInstrumentsGrpcResponse);
     rpc InsertOrReplaceTradingProfile(SettingsManagerTradingProfileGrpcModel) returns (SettingsManagerInsertOrReplaceTradingProfileGrpcResponse);
     rpc InsertOrReplaceMdeProfile(SettingsManagerMdeProfileGrpcModel) returns (SettingsManagerMdeProfileGrpcModelResponse);
 
