@@ -23,6 +23,7 @@ enum SettingsManagerGrpcErrorCode {
     GroupNotMatchedWithGlob = 17;
     InvalidGlobPattern = 18;
     BrandNotFound = 19;
+    DuplicateId = 20;
 }
 
 
