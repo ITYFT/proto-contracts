@@ -39,6 +39,7 @@ message AuthRegisterClientGrpcRequest{
     string Login = 1;
     string Password = 2;
     map<string, string> UtmSource = 3;
+    optional string BrandName = 4;
 }
 
 message AuthRegisterClientGrpcResponse{
