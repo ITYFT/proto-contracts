@@ -33,6 +33,7 @@ enum AuthError {
     PasswordMissingSpecial   = 23;
 
     InvalidBrandName         = 24;
+    BrandNotConfigurated     = 25;
 }
 
 message AuthRegisterClientGrpcRequest{
@@ -52,6 +53,7 @@ message AuthRegisterClientGrpcResponse{
 message AuthUpdatePasswordGrpcRequest{
     string ClientId = 1;
     string NewPassword = 2;
+    optional string BrandName = 4;
 }
 
 message AuthenticateGrpcRequest{
