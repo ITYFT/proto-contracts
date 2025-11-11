@@ -83,6 +83,7 @@ message TradingEngineClosedPositionModel {
   optional double NetPl = 29;
   optional double PositionLeverage = 30;
   optional double SwapsSum = 31;
+  string TradingGroup = 32;
 }
 
 message TradingEngineOrderPersistenceGrpcModel {
@@ -111,6 +112,7 @@ message TradingEngineOrderPersistenceGrpcModel {
 
   optional double DesiredPrice = 18;
   optional string PositionId = 19;
+  string TradingGroup = 20;
 }
 
 message BalanceHistoryModel {
@@ -161,6 +163,7 @@ message TradingEngineActivePositionModel {
   optional double NetPl = 29;
   optional double PositionLeverage = 30;
   optional double SwapsSum = 31;
+  string TradingGroup = 32;
 }
 
 message TradingEngineTradeModel {
@@ -177,6 +180,7 @@ message TradingEngineTradeModel {
   int64 CreateDate = 11;
   string CreateProcessId = 12;
   bool IsBuy = 13;
+  string TradingGroup = 14;
 }
 
 message AccountModel {
