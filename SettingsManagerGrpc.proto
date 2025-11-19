@@ -463,6 +463,8 @@ message SettingsManagerBrandSettingsGrpcModel{
     optional string YftBrandingUrl = 72;
     optional string TelegramApiKey = 73;
     optional bool ShowCustomDepositFlow = 74;
+    optional bool EnableCollateralCreation = 75;
+    optional bool EnablePositionCrud = 76;
 }
 
 message SettingsManagerBrandGrpcModel{
