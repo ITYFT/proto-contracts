@@ -113,6 +113,7 @@ message TradingEngineOrderPersistenceGrpcModel {
   optional double DesiredPrice = 18;
   optional string PositionId = 19;
   optional string TradingGroup = 20;
+  bool IsClosed = 21;
 }
 
 message BalanceHistoryModel {
