@@ -59,6 +59,7 @@ message AuthUpdatePasswordGrpcRequest{
 message AuthenticateGrpcRequest{
     string Login = 1;
     string Password = 2;
+    optional string BrandName = 4;
 }
 
 message AuthenticateGrpcResponse{
