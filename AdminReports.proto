@@ -114,6 +114,7 @@ message TradingEngineOrderPersistenceGrpcModel {
   optional string PositionId = 19;
   optional string TradingGroup = 20;
   bool IsClosed = 21;
+  bool IsTrailingSl = 22;
 }
 
 message BalanceHistoryModel {
@@ -165,6 +166,7 @@ message TradingEngineActivePositionModel {
   optional double PositionLeverage = 30;
   optional double SwapsSum = 31;
   optional string TradingGroup = 32;
+  bool IsTrailingSl = 33;
 }
 
 message TradingEngineTradeModel {
