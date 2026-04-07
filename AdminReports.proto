@@ -167,6 +167,7 @@ message TradingEngineActivePositionModel {
   optional double SwapsSum = 31;
   optional string TradingGroup = 32;
   bool IsTrailingSl = 33;
+  optional double TrailingSlOffset = 34;
 }
 
 message TradingEngineTradeModel {
