@@ -465,6 +465,9 @@ message SettingsManagerBrandSettingsGrpcModel{
     optional bool ShowCustomDepositFlow = 74;
     optional bool EnableCollateralCreation = 75;
     optional bool EnablePositionCrud = 76;
+    optional bool ShowHistory = 77;
+    optional bool ShowWallet = 78;
+    optional bool ShowPromo = 79;
 }
 
 message SettingsManagerBrandGrpcModel{
