@@ -390,17 +390,17 @@ message SettingsManagerBrandSettingsGrpcModel{
     bool LiveChat = 3;
     optional string Deposit = 4;
     optional string Withdrawal = 5;
-    bool Transfer = 6;
+    bool TransferMob = 6;
     bool Dashboard = 7;
     bool AccountCreation = 8;
     bool ShowNotifications = 9;
-    bool ShowDeposit = 10;
+    bool ShowDepositMob = 10;
     bool ShowLanguage = 11;
     optional string LanguageList = 12;
     bool ShowCompanyLogo = 13;
     bool ShowHeatMap = 14;
     bool ShowHowTo = 15;
-    bool ShowWithdraw = 16;
+    bool ShowWithdrawMob = 16;
     bool ShowSecurity = 17;
     bool ShowVerification = 18;
     bool ShowProfile = 19;
@@ -465,9 +465,13 @@ message SettingsManagerBrandSettingsGrpcModel{
     optional bool ShowCustomDepositFlow = 74;
     optional bool EnableCollateralCreation = 75;
     optional bool EnablePositionCrud = 76;
-    optional bool ShowHistory = 77;
+    optional bool ShowHistoryMob = 77;
     optional bool ShowWallet = 78;
     optional bool ShowPromo = 79;
+    optional bool ShowTransferWeb = 80;
+    optional bool ShowDepositWeb = 81;
+    optional bool ShowWithdrawWeb = 82;
+    optional bool ShowHistoryWeb = 83;
 }
 
 message SettingsManagerBrandGrpcModel{
