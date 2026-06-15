@@ -49,6 +49,7 @@ message GetCandlesGrpcRequest {
   int64 FromDate = 4;
   int64 ToDate = 5;
   optional string AccountId = 6;
+  string TraderId = 7;
 }
 
 message GetCandlesGrpcResponse {
