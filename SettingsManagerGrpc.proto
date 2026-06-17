@@ -512,6 +512,21 @@ message InsertOrReplaceSecretKeyGrpcResponse {
     repeated SettingsManagerGrpcError Errors = 2;
 }
 
+message DeleteTradingGroupGrpcRequest {
+    string GroupId = 1;
+}
+
+message SkippedEntityGrpcModel {
+    string Id = 1;
+    string Reason = 2;
+}
+
+message DeleteTradingGroupGrpcResponse {
+    repeated string DeletedProfileIds = 1;
+    repeated SkippedEntityGrpcModel SkippedProfiles = 2;
+    repeated SettingsManagerGrpcError Errors = 3;
+}
+
 
 service SettingsManagerGrpcService{
     rpc InsertOrReplaceCollateral(SettingsManagerCollateralGrpcModel) returns (SettingsManagerInsertOrReplaceCollateralGrpcResponse);
@@ -546,6 +561,8 @@ service SettingsManagerGrpcService{
     rpc GetAssetImages(SettingsManagerGetAssetImagesGrpcRequest) returns (stream SettingsManagerAssetImageGrpcModel);
 
     rpc InsertOrReplaceSecretKey(SettingsManagerSecretKeysGrpcModel) returns (InsertOrReplaceSecretKeyGrpcResponse);
-    
+
+    rpc DeleteTradingGroup(DeleteTradingGroupGrpcRequest) returns (DeleteTradingGroupGrpcResponse);
+
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
