@@ -528,6 +528,37 @@ message DeleteTradingGroupGrpcResponse {
 }
 
 
+// ─────────────────── Снімок налаштувань ───────────────────
+//
+// Замінює те, що давав my-nosql sync-reader: сервіс на старті тягнув повний
+// стан таблиці, далі тримав його актуальним. Тепер стартовий стан приходить
+// звідси, а зміни — Kafka-топіками settings.{trading,brand,security}.changed.
+//
+// Payload навмисно нетипізований JSON: типізувати тут усі 21 сутність означало
+// б, що кожен консьюмер має перезбиратись на кожну зміну форми будь-якої з них.
+// Власник схеми один — settings-manager-grpc; консьюмер розбирає payload у
+// свою модель і бере лише потрібні поля. Та сама форма, що й у Kafka-подіях,
+// тож код розбору в консьюмері один на обидва шляхи.
+
+message SettingsSnapshotGrpcRequest {
+    // Рядок сутності — той самий, що в Kafka-контракті (snake_case):
+    // trading_instrument, trading_group, markup_profile, brand, secret_keys, ...
+    string Entity = 1;
+    // Порожній — усі бренди.
+    optional string Brand = 2;
+}
+
+message SettingsSnapshotEntryGrpcModel {
+    string Id = 1;
+    optional string Brand = 2;
+    // Повний стан сутності у JSON.
+    string PayloadJson = 3;
+    // Мілісекунди epoch останньої зміни. Консьюмер порівнює з цим числом,
+    // щоб не відкотити кеш назад подією, яка прийшла із запізненням.
+    int64 OccurredAt = 4;
+}
+
+
 service SettingsManagerGrpcService{
     rpc InsertOrReplaceCollateral(SettingsManagerCollateralGrpcModel) returns (SettingsManagerInsertOrReplaceCollateralGrpcResponse);
     rpc InsertOrReplaceDayOffProfile(SettingsManagerDayOffProfileGrpcModel) returns (SettingsManagerInsertOrReplaceDayOffProfileGrpcResponse);
@@ -563,6 +594,9 @@ service SettingsManagerGrpcService{
     rpc InsertOrReplaceSecretKey(SettingsManagerSecretKeysGrpcModel) returns (InsertOrReplaceSecretKeyGrpcResponse);
 
     rpc DeleteTradingGroup(DeleteTradingGroupGrpcRequest) returns (DeleteTradingGroupGrpcResponse);
+
+    // Стартовий снімок для локального кешу налаштувань.
+    rpc GetSettingsSnapshot(SettingsSnapshotGrpcRequest) returns (stream SettingsSnapshotEntryGrpcModel);
 
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
