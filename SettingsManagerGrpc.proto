@@ -559,6 +559,38 @@ message SettingsSnapshotEntryGrpcModel {
 }
 
 
+// ─────────────────── Зображення бренду ───────────────────
+//
+// Байти брендової графіки навмисно НЕ їдуть у payload сутності brand_config —
+// ні у снімку, ні в Kafka-події. Один слот сягає ~4.7 МБ (login_image у
+// брендів default і MMTech), тобто більше за дефолтний ліміт прийому gRPC у
+// 4 МБ, і сутність не віддавалась взагалі. Тепер brand_config несе лише власні
+// поля рядка, а картинки доїмуються звідси за потреби.
+//
+// Чанками, а не одним повідомленням: ліміт діє на КОЖНЕ повідомлення стріму,
+// тож віддати слот цілим повідомленням означало б відтворити ту саму проблему
+// на іншому RPC. SettingsManagerAssetImageGrpcModel вище віддає картинку одним
+// шматком — там це безпечно лише тому, що аватари інструментів малі.
+
+message SettingsManagerBrandConfigImageGrpcRequest {
+    string Brand = 1;
+    // Слот: favicon, login_image, terminal_logo, login_logo, pwa_icon,
+    // profile_image, login_image_mob, powered_by_logo, discord_icon.
+    string Slot = 2;
+}
+
+message SettingsManagerBrandConfigImageChunkGrpcModel {
+    // Частина base64-рядка картинки. Консьюмер зшиває чанки в порядку приходу
+    // і декодує лише повний рядок — межі чанків не вирівняні на групи base64,
+    // тож декодувати окремий чанк не можна.
+    string ImageChunk = 1;
+    // MIME і час зміни дублюються в кожному чанку, щоб чанк був самоописовим.
+    string Mime = 2;
+    // Мілісекунди epoch останньої зміни слота — для інвалідації кешу.
+    int64 OccurredAt = 3;
+}
+
+
 service SettingsManagerGrpcService{
     rpc InsertOrReplaceCollateral(SettingsManagerCollateralGrpcModel) returns (SettingsManagerInsertOrReplaceCollateralGrpcResponse);
     rpc InsertOrReplaceDayOffProfile(SettingsManagerDayOffProfileGrpcModel) returns (SettingsManagerInsertOrReplaceDayOffProfileGrpcResponse);
@@ -597,6 +629,9 @@ service SettingsManagerGrpcService{
 
     // Стартовий снімок для локального кешу налаштувань.
     rpc GetSettingsSnapshot(SettingsSnapshotGrpcRequest) returns (stream SettingsSnapshotEntryGrpcModel);
+
+    // Байти одного слота брендової графіки. Порожній стрім — слота немає.
+    rpc GetBrandConfigImage(SettingsManagerBrandConfigImageGrpcRequest) returns (stream SettingsManagerBrandConfigImageChunkGrpcModel);
 
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
